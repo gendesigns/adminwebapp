@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { EnviaNotificacoesComponent } from './envia-notificacoes/envia-notificacoes.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EnviaNotificacoesComponent
   ],
   imports: [
     BrowserModule
