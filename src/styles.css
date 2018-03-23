@@ -1,1 +1,99 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
+*{
+    font-family: 'Open Sans', sans-serif;
+} 
+body{
+    background: #e8e8e8;
+    font-size: 14px;
+}
+header{
+    background: #664a90;
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+header nav{
+    background: transparent;
+    color: #fff;
+}
+header nav a{
+    color: rgba(255,255,255,0.7);
+    font-family: 'Open Sans', sans-serif;
+}
+header nav .active a,header nav  a:hover,header nav  a:active,header nav  a:focus{
+    color: rgba(255,255,255,1);
+}
+.nav-link-active{
+    color: rgba(255,255,255,1);
+    font-weight: 600;
+}
+.breadcrumb{
+    background: transparent;
+    color: #664a90;
+}
+.breadcrumb a{
+    color: #664a90;
+}
+.jumbotron{
+    background:#f4f4f4;
+    padding: 2rem 1rem;
+}
+.btn-primary,.btn-primary:hover,.btn-primary:focus,.btn-primary:active{
+    background-color: #664a90;
+}
+.btn{
+    border: none;   
+    font-size: 14px;
+    padding: 10px 20px;
+    border-radius: 5000px;
+}
+.form-control{
+    font-size: 14px;
+}
+footer{
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    left: 0;
+    font-size: 11px;
+    background: #664a90;
+    color: #fff;
+    padding: 5px;
+}
+footer p{
+    margin: 0;
+}
+.actions{
+    margin: 10px 0;
+}
+table .btn{
+    margin-right: 5px;
+    padding: 5px 10px;
+    font-size: 12px;
+}
+.form-search button{
+    padding: 0 10px;
+    height: 35px;
+    margin: 0;
+    position: relative;
+    top: 4px;
+    border-radius: 0;
+    -webkit-appearance:none;
+    border-left: none;
+    background: #fff;
+    border-top: 1px solid #ced4da;
+    border-bottom: 1px solid #ced4da;
+    border-right: 1px solid #ced4da;
+    color: #ced4da;
+}
+.form-search input{
+    border-radius: 0;
+    border-right: none;
+}
+.page-link{
+    background: transparent;
+    color: #664a90;
+    border: none;
+}

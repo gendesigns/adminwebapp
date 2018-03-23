@@ -20,11 +20,17 @@
       "prefix": "app",
       "styles": [
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "assets/css/fontawesome-all.min.css",
+        "assets/css/fileinput.css",
         "styles.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
-        "../node_modules/bootstrap/dist/js/bootstrap.min.js"
+        "../node_modules/bootstrap/dist/js/bootstrap.min.js",
+        "assets/js/plugins/piexif.min.js",
+        "assets/js/plugins/sortable.min.js",
+        "assets/js/plugins/purify.min.js",
+        "assets/js/fileinput.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
