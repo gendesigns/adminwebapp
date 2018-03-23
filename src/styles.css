@@ -41,9 +41,10 @@ header nav .active a,header nav  a:hover,header nav  a:active,header nav  a:focu
 }
 .btn-primary,.btn-primary:hover,.btn-primary:focus,.btn-primary:active{
     background-color: #664a90;
+    border-color: #664a90;
 }
 .btn{
-    border: none;   
+    /* border: none;  */  
     font-size: 14px;
     padding: 10px 20px;
     border-radius: 5000px;
