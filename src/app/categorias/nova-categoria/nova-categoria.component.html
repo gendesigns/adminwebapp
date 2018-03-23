@@ -1,0 +1,39 @@
+<app-header></app-header>
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="#">Home</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a href="#" routerLink="/categorias">Categorias</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Adicionar categoria</li>
+    </ol>
+  </nav>
+  <div class="jumbotron">
+    <div class="alert alert-primary" role="alert">
+      <i class="fas fa-info-circle"></i> This is a primary alert—check it out!
+    </div>
+    <div>
+      <div class="form-group">
+        <label>Título</label>
+        <input class="form-control" type="text" placeholder="Título da mensagem">
+      </div>
+      <div class="form-group">
+        <label>Categoria</label>
+        <select class="custom-select">
+          <option selected>Open this select menu</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-secondary" type="submit" routerLink="/notificacoes">Cancelar</button>
+        <button class="btn btn-success" type="submit">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

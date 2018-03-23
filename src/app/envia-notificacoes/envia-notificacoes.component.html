@@ -1,22 +1,37 @@
+<app-header></app-header>
 <div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="#">Home</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a href="#" routerLink="/notificacoes">Notificações</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Adicionar notificação</li>
+    </ol>
+  </nav>
   <div class="jumbotron">
+    <div class="alert alert-primary" role="alert">
+        <i class="fas fa-info-circle"></i> This is a primary alert—check it out!
+    </div>
     <form [formGroup]="formulario" (ngSubmit)="salvarNotificacao()">
-    
-        <div class="form-group">
-          <label for="Titulo da notificação">Título da nofiticação</label>
-          <input class="form-control" type="text" placeholder="Título da mensagem"
-            formControlName="titulo">
-        </div>
-        
-        <div class="form-group">
+      <div class="form-group">
+        <label for="Titulo da notificação">Título da nofiticação</label>
+        <input class="form-control" type="text" placeholder="Título da mensagem" formControlName="titulo">
+      </div>
+
+      <div class="form-group">
         <label for="Texto da notificação">
           Texto da nofiticação</label>
           <textarea class="form-control" maxlength="300" formControlName="texto"></textarea>
         </div>
 
-        <div class="form-group">
-          <button class="btn btn-primary" type="submit">Enviar nofiticação</button>
-        </div>
+      <div class="form-group">
+        <button class="btn btn-secondary" type="submit" routerLink="/notificacoes">Cancelar</button>
+        <button class="btn btn-success" type="submit">Enviar notificação</button>
+      </div>
     </form>
   </div>
 </div>
+<app-footer></app-footer>

@@ -1,0 +1,13 @@
+.image{
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #ccc;
+}
+.image .btn{
+    padding: 0;
+    width: 30px;
+    height: 30px;
+}
