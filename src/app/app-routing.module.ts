@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth-guard.service';
 
 import { HomeComponent } from './home/home.component';
 import { ListaNotificacoesComponent } from './lista-notificacoes/lista-notificacoes.component';
@@ -11,19 +12,22 @@ import { NovaCategoriaComponent } from './categorias/nova-categoria/nova-categor
 import { ListaUsuariosComponent } from './usuarios/lista-usuarios/lista-usuarios.component';
 import { BibliotecaComponent } from './biblioteca/biblioteca.component';
 import { LoginComponent } from './login/login.component';
+import { UploadFormComponent } from './uploads/upload-form/upload-form.component';
+
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'notificacoes', component: ListaNotificacoesComponent },
-  { path: 'add-notificacao', component: EnviaNotificacoesComponent},
+  { path: 'add-notificacao', component: EnviaNotificacoesComponent, canActivate: [ AuthGuard ] },
   { path: 'produtos', component: ListaProdutosComponent},
   { path: 'produtos/novo-produto', component: NovoProdutoComponent},
   { path: 'categorias', component: ListaCategoriasComponent},
   { path: 'categorias/nova-categoria', component: NovaCategoriaComponent},
   { path: 'usuarios', component: ListaUsuariosComponent},  
   { path: 'biblioteca', component: BibliotecaComponent},  
+  { path: 'uploads', loadChildren: './uploads/shared/upload.module#UploadModule' },
   //{ path: 'login', component: LoginComponent},
-  { path: '', component: LoginComponent}  
+  { path: '', component: LoginComponent} 
 ];
 
 @NgModule({

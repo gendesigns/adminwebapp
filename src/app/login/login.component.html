@@ -3,13 +3,23 @@
     <img src="assets/img/logo-rommanel-mobile.png" />
     <div class="panel">
       <p>Faça o seu login para acessar o painel do catálogo Rommanel.</p>
-      <div class="form-group">
-        <input type="text" class="form-control form-control-sm" placeholder="Usuário">
-      </div>
-      <div class="form-group">
-        <input type="text" class="form-control form-control-sm" placeholder="Senha">
-      </div>
-      <button type="submit" class="btn btn-success btn-block" routerLink="/home">Entrar</button>
+      <form [formGroup]="formulario" (ngSubmit)="autenticar()">
+        <div class="form-group">
+          <input 
+            class="form-control form-control-sm" 
+            placeholder="Endereço de e-mail"
+            type="email" 
+            formControlName="email">
+        </div>
+        <div class="form-group">
+          <input 
+            class="form-control form-control-sm" 
+            placeholder="Senha" 
+            type="password"
+            formControlName="password">
+        </div>
+        <button type="submit" class="btn btn-success btn-block">Entrar</button>
+      </form>
     </div>
   </div>
 </div>

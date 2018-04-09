@@ -1,4 +1,8 @@
 <app-header></app-header>
+<!-- <div *ngFor="let upload of uploads | async"></div>
+  <upload-detail [upload]='upload'></upload-detail>
+</div> -->
+
 <div class="container">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -22,45 +26,25 @@
       <thead>
         <tr>
           <td>#</td>
-          <td>Titulo</td>
-          <td>Mensagem</td>
+          <td>Nome</td>
+          <td>Progresso</td>
           <td width="200">Ação</td>
         </tr>
       </thead>
       <tbody>
+          
         <tr>
           <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
+          <td>Ooll</td>
+          <td>bblalaa</td>
           <td>
-            <button class="btn btn-primary">
+          <button class="btn btn-primary">
               <i class="fas fa-reply"></i> Reenviar</button>
-            <button class="btn btn-danger">
+          <button class="btn btn-danger">
               <i class="fas fa-trash"></i> Excluir</button>
           </td>
         </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>
-            <button class="btn btn-primary">
-              <i class="fas fa-reply"></i> Reenviar</button>
-            <button class="btn btn-danger">
-              <i class="fas fa-trash"></i> Excluir</button>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>
-            <button class="btn btn-primary">
-              <i class="fas fa-reply"></i> Reenviar</button>
-            <button class="btn btn-danger">
-              <i class="fas fa-trash"></i> Excluir</button>
-          </td>
-        </tr>
+        
       </tbody>
       <tfoot>
         <tr>
@@ -73,23 +57,20 @@
     </table>
   </div>
   <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-end">
-      <li class="page-item">
-        <a class="page-link" href="#">Anterior</a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" href="#">1</a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" href="#">2</a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" href="#">3</a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" href="#">Próxima</a>
-      </li>
-    </ul>
+    
+      <pagination-controls 
+                      class="pagination justify-content-end"
+                      (pageChange)="p = $event"   
+                      maxSize="5"
+                      directionLinks="true"
+                      autoHide="true"
+                      previousLabel="Anterior"
+                      nextLabel="Próxima"
+                      screenReaderPaginationLabel="Paginação"
+                      screenReaderPageLabel="página"
+                      screenReaderCurrentLabel="Você está na página">
+      </pagination-controls>
+    
   </nav>
 </div>
 <app-footer></app-footer>

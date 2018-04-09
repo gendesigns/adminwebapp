@@ -1,0 +1,7 @@
+<th scope="row"><img src="{{upload.url}}" width="40" height="40"></th>
+<td>{{ upload.name }}</td>
+<td>{{ upload.progress }}%</td>
+<td>
+<button (click)='deleteUpload()' class="btn btn-danger">
+    <i class="fas fa-trash"></i> Excluir</button>
+</td>

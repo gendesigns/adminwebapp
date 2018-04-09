@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from "@angular/forms";
 import { Notificacao } from './notificacao.model';
+import * as firebase from 'firebase'
 
 import { Bd } from '../bd.service'
 
@@ -11,6 +12,9 @@ import { Bd } from '../bd.service'
 })
 export class EnviaNotificacoesComponent implements OnInit {
 
+  public autor: string
+  public dataHora: any
+  public lida: boolean = false
 
   private formulario: FormGroup = new FormGroup({
     'titulo': new FormControl(null),
@@ -21,15 +25,27 @@ export class EnviaNotificacoesComponent implements OnInit {
   constructor( private bd:Bd ) { }
 
   ngOnInit() {
+    firebase.auth().onAuthStateChanged((user) => {
+      this.autor = user.email
+      this.dataHora = Date.now();
+    })
   }
 
   public salvarNotificacao():void {
     let notificacao: Notificacao = new Notificacao(
       this.formulario.value.titulo,
       this.formulario.value.texto,
-  )
-  this.bd.saveNoficacao(notificacao)
-    console.log('Salvando a notificação!!!')
+      this.autor,
+      this.dataHora,
+      this.lida
+    )
+    this.bd.enviaNoficacao(notificacao)
+    this.inputClean()
+  }
+
+  public inputClean() {
+    this.formulario.reset({titulo: '' })
+    this.formulario.reset({texto: '' })
   }
 
 }

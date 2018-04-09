@@ -2,6 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from "@angular/forms";
 
+import {NgxPaginationModule} from 'ngx-pagination'; 
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+
+import { FirebaseConfig } from './../environments/firebase.config';
 import { Bd } from './bd.service'
 
 import { AppComponent } from './app.component';
@@ -18,7 +26,16 @@ import { NovoProdutoComponent } from './produtos/novo-produto/novo-produto.compo
 import { ListaUsuariosComponent } from './usuarios/lista-usuarios/lista-usuarios.component';
 import { HomeComponent } from './home/home.component';
 import { BibliotecaComponent } from './biblioteca/biblioteca.component';
+import { Auth } from './auth.service';
+import { AuthGuard } from './auth-guard.service';
+import { DropZoneDirective } from './drop-zone.directive';
+import { FileUploadComponent } from './file-upload/file-upload.component';
+import { FileSizePipe } from './file-size.pipe';
 
+import { UploadModule } from './uploads/shared/upload.module';
+
+
+// import { UploadService } from './uploads/shared/upload.service';
 
 
 
@@ -36,14 +53,22 @@ import { BibliotecaComponent } from './biblioteca/biblioteca.component';
     NovoProdutoComponent,
     ListaUsuariosComponent,
     HomeComponent,
-    BibliotecaComponent
+    BibliotecaComponent,
+    DropZoneDirective,
+    FileUploadComponent,
+    FileSizePipe,
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxPaginationModule,
+    AngularFirestoreModule,
+    AngularFireDatabaseModule,
+    AngularFireStorageModule,
+    AngularFireModule.initializeApp(FirebaseConfig)
   ],
-  providers: [ Bd ],
+  providers: [Auth, AuthGuard, Bd ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

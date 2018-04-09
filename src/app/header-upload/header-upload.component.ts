@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Auth } from '../auth.service'
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: 'app-header-upload',
+  templateUrl: './header-upload.component.html',
+  styleUrls: ['./header-upload.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderUploadComponent implements OnInit {
 
   constructor( private auth:Auth ) { }
 
