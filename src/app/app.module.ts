@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule } from '@angular/forms';
 
+import { NgSelectModule } from '@ng-select/ng-select';
 import {NgxPaginationModule} from 'ngx-pagination'; 
 
 import { AngularFireModule } from 'angularfire2';
@@ -60,7 +62,9 @@ import { UploadModule } from './uploads/shared/upload.module';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     ReactiveFormsModule,
+    NgSelectModule,
     AppRoutingModule,
     NgxPaginationModule,
     AngularFirestoreModule,
