@@ -1,32 +1,30 @@
-
-
-<div *ngIf="currentUpload">
-  <progress class="progress is-success" min=1 max=100 value="{{ currentUpload?.progress }}"></progress>
-  Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
-</div>
-
-
-<div class="box">
-  <!-- <h3>Single File Upload</h3>
-
-  <label>
-    <input type="file" class="button" (change)="detectFiles($event)">
-  </label>
-  <button class="button is-primary"
-    [disabled]="!selectedFiles"
-    (click)="uploadSingle()">
-    Upload Single
-  </button>
-
-  <hr> -->
-
-  <label>
-    <input type="file" class="button" (change)="detectFiles($event)" multiple>
-  </label>
-  <br/>
-  <button class="btn btn-success"
-    [disabled]="!selectedFiles"
-    (click)="uploadMulti()">
-    Upload
-  </button>
+<div class="modal" tabindex="-1" role="dialog" id="modalupload">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Upload de Imagens</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="currentUpload">
+          <progress class="progress is-success" min=1 max=100 value="{{ currentUpload?.progress }}"></progress>
+          Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
+        </div>
+        <div class="box">
+          <label>
+            <input type="file" class="button" (change)="detectFiles($event)" multiple>
+          </label>
+          <br/>
+          <button class="btn btn-success" [disabled]="!selectedFiles" (click)="uploadMulti()">
+            Upload
+          </button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
 </div>

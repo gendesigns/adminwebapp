@@ -98,3 +98,9 @@ table .btn{
     color: #664a90;
     border: none;
 }
+.ngx-pagination .current{
+    background-color: #664a90 !important;
+}
+img{
+    max-width: 100%;
+}

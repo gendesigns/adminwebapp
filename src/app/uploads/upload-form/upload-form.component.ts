@@ -4,6 +4,9 @@ import { UploadService } from '../shared/upload.service';
 
 import { Upload } from '../shared/upload';
 
+declare let jQuery: any;
+declare let $: any
+
 @Component({
   selector: 'upload-form',
   templateUrl: './upload-form.component.html',
@@ -25,6 +28,7 @@ export class UploadFormComponent {
     if (file && file.length === 1) {
       this.currentUpload = new Upload(file.item(0));
       this.upSvc.pushUpload(this.currentUpload);
+      //$('#modalupload').modal('hide');
     } else {
       console.error('No file found!');
     }
@@ -40,6 +44,7 @@ export class UploadFormComponent {
     Array.from(files).forEach((file) => {
       this.currentUpload = new Upload(file);
       this.upSvc.pushUpload(this.currentUpload);
+      //$('#modalupload').modal('hide');
     });
   }
 }

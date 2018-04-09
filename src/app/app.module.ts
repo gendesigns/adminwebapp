@@ -33,6 +33,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { FileSizePipe } from './file-size.pipe';
 
 import { UploadModule } from './uploads/shared/upload.module';
+import { UploadService } from './uploads/shared/upload.service';
 
 
 // import { UploadService } from './uploads/shared/upload.service';
@@ -68,7 +69,7 @@ import { UploadModule } from './uploads/shared/upload.module';
     AngularFireStorageModule,
     AngularFireModule.initializeApp(FirebaseConfig)
   ],
-  providers: [Auth, AuthGuard, Bd ],
+  providers: [Auth, AuthGuard, Bd, UploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

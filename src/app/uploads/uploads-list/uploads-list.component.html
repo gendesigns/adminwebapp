@@ -1,86 +1,76 @@
 <app-header-upload></app-header-upload>
 <div class="container">
-    
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="#">Home</a>
-        </li>
-        <li class="breadcrumb-item active" aria-current="page">Produtos</li>
-      </ol>
-    </nav>
-    
-    <div class="jumbotron">
-      <upload-form></upload-form>
-    </div>  
-      <hr>
-    <div class="jumbotron">
-      <div class="actions">
-          <nav aria-label="Page navigation example" class="float-sm-right">
-      
-              <pagination-controls 
-                              class="pagination justify-content-end"
-                              (pageChange)="p = $event"   
-                              maxSize="5"
-                              directionLinks="true"
-                              autoHide="true"
-                              previousLabel="Anterior"
-                              nextLabel="Próxima"
-                              screenReaderPaginationLabel="Paginação"
-                              screenReaderPageLabel="página"
-                              screenReaderCurrentLabel="Você está na página">
-              </pagination-controls>
-            
-          </nav>
-        <div class="form-inline form-search">
-          <input type="search" class="form-control" placeholder="Buscar" [(ngModel)]="term">
-          <button type="submit" class="mb-2">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <td>#</td>
-            <td>Nome</td>
-            <td>Progresso</td>
-            <td width="200">Ação</td>
-          </tr>
-        </thead>
-        <tbody>
-
-          <tr *ngFor="let upload of uploads | async | filter:term | paginate: { itemsPerPage: 05, currentPage: p }">
-              <upload-detail [upload]='upload'></upload-detail>
-          </tr>
-          
-        </tbody>
-        <tfoot>
-          <tr>
-            <td>#</td>
-            <td>Titulo</td>
-            <td>Mensagem</td>
-            <td width="200">Ação</td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
-    <nav aria-label="Page navigation example">
-      
-        <pagination-controls 
-                        class="pagination justify-content-end"
-                        (pageChange)="p = $event"   
-                        maxSize="5"
-                        directionLinks="true"
-                        autoHide="true"
-                        previousLabel="Anterior"
-                        nextLabel="Próxima"
-                        screenReaderPaginationLabel="Paginação"
-                        screenReaderPageLabel="página"
-                        screenReaderCurrentLabel="Você está na página">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="#">Home</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Produtos</li>
+    </ol>
+  </nav>
+  <hr>
+  <div class="jumbotron">
+    <button class="btn btn-success" data-toggle="modal" data-target="#modalupload">Nova imagem</button>
+    <div class="actions">
+      <nav aria-label="Page navigation example" class="float-sm-right">
+        <pagination-controls class="pagination justify-content-end" (pageChange)="p = $event" maxSize="5" directionLinks="true" autoHide="true"
+          previousLabel="Anterior" nextLabel="Próxima" screenReaderPaginationLabel="Paginação" screenReaderPageLabel="página"
+          screenReaderCurrentLabel="Você está na página">
         </pagination-controls>
-      
-    </nav>
-    <br/><br/><br/><br/>
+      </nav>
+      <div class="form-inline form-search">
+        <input type="search" class="form-control" placeholder="Buscar" [(ngModel)]="term">
+        <button type="submit" class="mb-2">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <td>#</td>
+          <td>Nome</td>
+          <td>Progresso</td>
+          <td width="200">Ação</td>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let upload of uploads | async | filter:term | paginate: { itemsPerPage: 05, currentPage: p }">
+          <!-- <upload-detail [upload]='upload'></upload-detail> -->
+          <td scope="row">
+            <img src="{{upload.url}}" width="40" height="40">
+          </td>
+          <td>{{ upload.name }}</td>
+          <td>{{ upload.progress }}%</td>
+          <td>
+            <button (click)='deleteUpload()' class="btn btn-danger">
+              <i class="fas fa-trash"></i> Excluir</button>
+          </td>
+        </tr>
+
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>#</td>
+          <td>Titulo</td>
+          <td>Mensagem</td>
+          <td width="200">Ação</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <nav aria-label="Page navigation example">
+
+    <pagination-controls class="pagination justify-content-end" (pageChange)="p = $event" maxSize="5" directionLinks="true" autoHide="true"
+      previousLabel="Anterior" nextLabel="Próxima" screenReaderPaginationLabel="Paginação" screenReaderPageLabel="página" screenReaderCurrentLabel="Você está na página">
+    </pagination-controls>
+
+  </nav>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
 </div>
+<upload-form></upload-form>
 <!-- <app-footer-upload></app-footer-upload> -->
