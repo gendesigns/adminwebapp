@@ -37,6 +37,8 @@ export class NovoProdutoComponent implements OnInit {
   public image2: string
   public image3: string
   public disabledProduct: boolean
+  public author: string
+  public createdAt
 
   public get_image1: string
   public get_image2: string
@@ -53,7 +55,8 @@ export class NovoProdutoComponent implements OnInit {
     'image1': new FormControl('', Validators.required),
     'image2': new FormControl('', Validators.required),
     'image3': new FormControl('', Validators.required),
-    'disabledProduct': new FormControl('', Validators.required)
+    'disabledProduct': new FormControl('', Validators.required),
+    'author': new FormControl('', Validators.required)
   })
 
   constructor( private auth:Auth, private upSvc: UploadService, private db:Bd ) { }
@@ -88,6 +91,11 @@ export class NovoProdutoComponent implements OnInit {
   }
 
   ngOnInit() {
+    
+    firebase.auth().onAuthStateChanged((user) => {
+      this.author = user.email
+      this.createdAt = new Date()
+    })
 
     this.tagsNames.forEach((c, i) => {
         this.tags.push({ id: i, name: c });
@@ -137,7 +145,9 @@ export class NovoProdutoComponent implements OnInit {
       this.image1 = this.get_image1, 
       this.image2 = this.get_image2, 
       this.image3 = this.get_image3, 
-      this.disabledProduct = this.saveUsername
+      this.disabledProduct = this.saveUsername,
+      this.author = this.author,
+      this.createdAt
     )
     this.db.saveProductFb(product)
     // console.log(product)
