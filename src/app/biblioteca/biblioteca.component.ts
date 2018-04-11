@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { UploadService } from '../uploads/shared/upload.service';
+import { Upload } from '../uploads/shared/upload';
+
+import { Observable } from 'rxjs/Observable';
+
 
 declare let jQuery: any;
 declare let $: any
@@ -10,48 +16,55 @@ declare let $: any
 })
 export class BibliotecaComponent implements OnInit {
 
-  constructor() { }
+  public image1: string
+  public image2: string
+  public image3: string
+
+  private formulario: FormGroup = new FormGroup({
+    'image1': new FormControl(null),
+    'image2': new FormControl(null),
+    'image3': new FormControl(null)
+  })
+
+
+  uploads: Observable<Upload[]>;
+
+  // IMG_PATH: string = 'assets/img/'
+
+  // public images:Array<string> = ['130416.jpg', '130415.jpg', '512607.jpg']
+  public items: any
+  public imgValue
+
+  constructor( private upSvc: UploadService) { }
+
+  // public img = '130416.jpg';
+  // public img1 = '130415.jpg';
+  // public img2 = '512607.jpg';
 
   ngOnInit() {
-
-    $("#input-id").fileinput({
-      uploadUrl: "/file-upload-batch/2",
-      showUpload: true,
-      showCaption: true,
-      browseLabel: 'Selecionar',
-      removeClass: 'btn btn-danger',
-      uploadClass: 'btn btn-success',
-      removeLabel: 'Remover',
-      fileActionSettings: {
-        showUpload: false,
-        removeIcon: '<i class="fas fa-trash"></i>',
-        removeClass: 'btn btn-danger btn-tiny',
-        removeTitle: 'Remover imagem',
-        zoomIcon: '<i class="fas fa-search-plus"></i>',
-        zoomClass: 'btn btn-success btn-tiny',
-        zoomTitle: 'Ampliar',
-      },
-      previewZoomButtonIcons: {
-        prev: '<i class="fas fa-arrow-left"></i>',
-        next: '<i class="fas fa-arrow-right"></i>',
-        toggleheader: '<i class="fas fa-arrows-alt-v"></i>',
-        fullscreen: '<i class="fas fa-arrows-alt"></i>',
-        borderless: '<i class="fas fa-expand"></i>',
-        close: '<i class="fas fa-times"></i>'
-      },
-      previewZoomButtonClasses: {
-        prev: 'btn btn-navigate',
-        next: 'btn btn-navigate',
-        toggleheader: 'btn btn-tiny btn-kv btn-default btn-outline-secondary',
-        fullscreen: 'btn btn-tiny btn-kv btn-default btn-outline-secondary',
-        borderless: 'btn btn-tiny btn-kv btn-default btn-outline-secondary',
-        close: 'btn btn-tiny btn-kv btn-default btn-outline-secondary'
-      }
+    //$('#biblioteca').modal('show');
+    this.uploads = this.upSvc.getUploads();
+    this.uploads.subscribe((result) => {
+      this.items = result
+      // console.log(this.items.length)
     });
-
-    $("#input-id").on('filepreupload', function (event, data, previewId, index) {
-      console.log('File pre upload triggered');
+    // this.uploads.forEach(item => {
+    //   console.log(item)
+    // })
+    
+    
+    $(document).on('click', '.btn-save', function () {
+      var data_box = $('#biblioteca #data-box').val();
+      var img = $("input[name=img]:checked + img").attr('src');
+      
+      $(`.image[data-box='`+data_box+`']`).html('<img src="' + img + '"/>');
+      // $('#image1').val(img);
+      // this.imgValue = img
+        
+      // this.formulario.image1.reset({value: 'olá'})
+        
+      $('#biblioteca').modal('hide');
     })
-
   }
+
 }

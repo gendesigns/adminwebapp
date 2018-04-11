@@ -1,23 +1,42 @@
+.jumbotron{
+    overflow: hidden;
+}
+.form-group-images{
+    display: flex;
+    align-items: flex-end;
+}
 .image{
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    min-height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
     border: 2px dashed #ccc;
+    float: left;
+    margin-right: 20px;
+    height: auto;
+}
+.image:first-child{
+    width: 150px;
+    min-height: 150px;
 }
 .image .btn{
     padding: 0;
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
 }
 
-.ng-select.custom {
-    border:0px;
-    min-height: 0px;
-    border-radius: 0;
+img{
+    max-width: 100%;
+    border: 2px solid #f8f8f8;
+    margin-bottom: 10px;
 }
-.ng-select.custom .ng-control  {            
-    min-height: 0px;
-    border-radius: 0;
+input[type=radio]{
+    display: none;
+}
+input:checked + img{
+    border-color: #664a90;
+}
+.getImage {
+    display: none;
 }

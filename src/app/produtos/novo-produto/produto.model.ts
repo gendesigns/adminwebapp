@@ -2,10 +2,12 @@ export class Produto {
     constructor(
         public ref: string,
         public category: string,
-        public tags: Array<any>,
+        public family: string,
+        public collection: string,
+        public details: Array<any>,
         public image1: any,
         public image2: any,
         public image3: any,
-        public disabled: boolean
+        public disabledProduct: boolean
     ) {}
 }

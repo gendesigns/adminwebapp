@@ -1,15 +1,40 @@
-<app-header></app-header>
-<div class="container">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="">Home</a>
-      </li>
-      <li class="breadcrumb-item active" aria-current="page">Biblioteca de Imagens</li>
-    </ol>
-  </nav>
-  <div class="jumbotron">
-    <input id="input-id" type="file" class="file" data-preview-file-type="text" multiple>
+<!-- Modal -->
+<div class="modal fade" id="biblioteca" tabindex="-1" role="dialog" aria-labelledby="biblioteca" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Biblioteca de imagens</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="data-box" value="0">
+        <div class="row">
+          <div class="col-md-3" *ngFor="let image of items">
+            <label for="{{image.name}}">
+              <input type="radio" name="img" id="{{image.name}}">
+              <img src="{{image.url}}" />
+            </label>
+          </div>
+          <!-- <div class="col-md-3">
+            <label for="i2">
+              <input type="radio" name="img" id="i2">
+              <img src="{{img1}}" />
+            </label>
+          </div>
+          <div class="col-md-3">
+            <label for="i3">
+              <input type="radio" name="img" id="i3">
+              <img src="{{img2}}" />
+            </label>
+          </div> -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary btn-save">Adicionar</button>
+      </div>
+    </div>
   </div>
 </div>
-<app-footer></app-footer>

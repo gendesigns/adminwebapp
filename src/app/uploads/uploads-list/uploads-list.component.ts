@@ -21,4 +21,5 @@ export class UploadsListComponent implements OnInit {
     this.uploads = this.upSvc.getUploads();
     this.uploads.subscribe(() => this.showSpinner = false);
   }
+  
 }
