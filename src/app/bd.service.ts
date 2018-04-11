@@ -44,20 +44,20 @@ export class Bd {
         let detail = product.tagsDetails
         
         console.log('Chegamos até p service: ', product)
-        // firebase.database().ref(`produtos/${category}/${ref}`)
-        //     .set({ 
-        //             ref: product.ref, 
-        //             category: product.category, 
-        //             tagsDetails: product.tagsDetails, 
-        //             family: product.family, 
-        //             collection: product.collection, 
-        //             image1: product.image1,
-        //             image2: product.image2,
-        //             image3: product.image3,
-        //             disabledProduct: product.disabledProduct,
-        //             author: product.author,
-        //             createdAt: product.createdAt
-        //         })
+        firebase.database().ref(`produtos/${category}/${ref}`)
+            .set({ 
+                    ref: product.ref, 
+                    category: product.category, 
+                    tagsDetails: product.tagsDetails, 
+                    family: product.family, 
+                    collection: product.collection, 
+                    image1: product.image1,
+                    image2: product.image2,
+                    image3: product.image3,
+                    disabledProduct: product.disabledProduct,
+                    author: product.author,
+                    createdAt: product.createdAt
+                })
     }
 
 }
