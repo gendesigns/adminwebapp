@@ -43,7 +43,7 @@ export class Bd {
         let ref = product.ref
         let detail = product.tagsDetails
         
-        console.log('Chegamos até p service: ', detail[0])
+        console.log('Chegamos até p service: ', product)
         firebase.database().ref(`produtos/${category}/${ref}`)
             .set({ 
                     ref: product.ref, 
@@ -54,7 +54,9 @@ export class Bd {
                     image1: product.image1,
                     image2: product.image2,
                     image3: product.image3,
-                    disabledProduct: product.disabledProduct
+                    disabledProduct: product.disabledProduct,
+                    author: product.author,
+                    createdAt: product.createdAt
                 })
     }
 
