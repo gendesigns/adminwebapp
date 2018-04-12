@@ -12,65 +12,269 @@
       <li class="breadcrumb-item active" aria-current="page">Produtos</li>
     </ol>
   </nav>
-  <div class="jumbotron">
-    <div class="actions">
-      <button class="btn btn-success" routerLink="novo-produto">Novo produto</button>
-      <div class="form-inline form-search float-sm-right">
-        <input type="search" class="form-control" placeholder="Buscar">
-        <button type="submit" class="mb-2">
-          <i class="fas fa-search"></i>
-        </button>
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="aneis-tab" data-toggle="tab" href="#aneis" role="tab" aria-controls="aneis" aria-selected="true">Anéis</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="brincos-tab" data-toggle="tab" href="#brincos" role="tab" aria-controls="brincos" aria-selected="false">Brincos</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="colares-tab" data-toggle="tab" href="#colares" role="tab" aria-controls="colares" aria-selected="false">Colares</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pingentes-tab" data-toggle="tab" href="#pingentes" role="tab" aria-controls="pingentes" aria-selected="false">Pingentes</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pulseiras-tab" data-toggle="tab" href="#pulseiras" role="tab" aria-controls="pulseiras" aria-selected="false">Pulseiras</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="aneis" role="tabpanel" aria-labelledby="aneis-tab">
+      <div class="jumbotron">
+        <div class="actions m-1">
+          <span>Anéis</span>
+          <div class="form-inline form-search float-sm-right">
+            <input type="search" class="form-control" placeholder="Buscar">
+            <button type="submit" class="mb-2">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+          <button class="btn btn-success float-sm-right mr-3" routerLink="novo-produto">Novo produto</button>
+        </div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <td>#</td>
+              <td>Nome</td>
+              <td>Progresso</td>
+              <td>Detalhes</td>
+              <td width="200">Ação</td>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr>
+              <th scope="row">1</th>
+              <td>Ooll</td>
+              <td>bblalaa</td>
+              <td><span>Pedra Preta</span><span>Pedra Nude</span><span>Pérolas</span></td>              
+              <td>
+                <button class="btn btn-primary">
+                  <i class="fas fa-reply"></i> Reenviar</button>
+                <button class="btn btn-danger">
+                  <i class="fas fa-trash"></i> Excluir</button>
+              </td>
+            </tr>
+
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>#</td>
+              <td>Titulo</td>
+              <td>Mensagem</td>
+              <td width="200">Ação</td>
+            </tr>
+          </tfoot>
+        </table>
       </div>
     </div>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <td>#</td>
-          <td>Nome</td>
-          <td>Progresso</td>
-          <td width="200">Ação</td>
-        </tr>
-      </thead>
-      <tbody>
-          
-        <tr>
-          <th scope="row">1</th>
-          <td>Ooll</td>
-          <td>bblalaa</td>
-          <td>
-          <button class="btn btn-primary">
-              <i class="fas fa-reply"></i> Reenviar</button>
-          <button class="btn btn-danger">
-              <i class="fas fa-trash"></i> Excluir</button>
-          </td>
-        </tr>
-        
-      </tbody>
-      <tfoot>
-        <tr>
-          <td>#</td>
-          <td>Titulo</td>
-          <td>Mensagem</td>
-          <td width="200">Ação</td>
-        </tr>
-      </tfoot>
-    </table>
+    <div class="tab-pane fade" id="brincos" role="tabpanel" aria-labelledby="brincos-tab">
+      <div class="jumbotron">
+        <div class="actions m-1">
+          <span>Brincos</span>
+          <div class="form-inline form-search float-sm-right">
+            <input type="search" class="form-control" placeholder="Buscar">
+            <button type="submit" class="mb-2">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+          <button class="btn btn-success float-sm-right mr-3" routerLink="novo-produto">Novo produto</button>
+        </div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <td>#</td>
+              <td>Nome</td>
+              <td>Progresso</td>
+              <td width="200">Ação</td>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr>
+              <th scope="row">1</th>
+              <td>Ooll</td>
+              <td>bblalaa</td>
+              <td>
+                <button class="btn btn-primary">
+                  <i class="fas fa-reply"></i> Reenviar</button>
+                <button class="btn btn-danger">
+                  <i class="fas fa-trash"></i> Excluir</button>
+              </td>
+            </tr>
+
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>#</td>
+              <td>Titulo</td>
+              <td>Mensagem</td>
+              <td width="200">Ação</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="colares" role="tabpanel" aria-labelledby="colares-tab">
+      <div class="jumbotron">
+        <div class="actions m-1">
+          <span>Colares</span>
+          <div class="form-inline form-search float-sm-right">
+            <input type="search" class="form-control" placeholder="Buscar">
+            <button type="submit" class="mb-2">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+          <button class="btn btn-success float-sm-right mr-3" routerLink="novo-produto">Novo produto</button>
+        </div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <td>#</td>
+              <td>Nome</td>
+              <td>Progresso</td>
+              <td width="200">Ação</td>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr>
+              <th scope="row">1</th>
+              <td>Ooll</td>
+              <td>bblalaa</td>
+              <td>
+                <button class="btn btn-primary">
+                  <i class="fas fa-reply"></i> Reenviar</button>
+                <button class="btn btn-danger">
+                  <i class="fas fa-trash"></i> Excluir</button>
+              </td>
+            </tr>
+
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>#</td>
+              <td>Titulo</td>
+              <td>Mensagem</td>
+              <td width="200">Ação</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="pingentes" role="tabpanel" aria-labelledby="pingentes-tab">
+      <div class="jumbotron">
+        <div class="actions m-1">
+          <span>Pingentes</span>
+          <div class="form-inline form-search float-sm-right">
+            <input type="search" class="form-control" placeholder="Buscar">
+            <button type="submit" class="mb-2">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+          <button class="btn btn-success float-sm-right mr-3" routerLink="novo-produto">Novo produto</button>
+        </div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <td>#</td>
+              <td>Nome</td>
+              <td>Progresso</td>
+              <td width="200">Ação</td>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr>
+              <th scope="row">1</th>
+              <td>Ooll</td>
+              <td>bblalaa</td>
+              <td>
+                <button class="btn btn-primary">
+                  <i class="fas fa-reply"></i> Reenviar</button>
+                <button class="btn btn-danger">
+                  <i class="fas fa-trash"></i> Excluir</button>
+              </td>
+            </tr>
+
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>#</td>
+              <td>Titulo</td>
+              <td>Mensagem</td>
+              <td width="200">Ação</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="pulseiras" role="tabpanel" aria-labelledby="pulseiras-tab">
+      <div class="jumbotron">
+        <div class="actions m-1">
+          <span>Pulseiras</span>
+          <div class="form-inline form-search float-sm-right">
+            <input type="search" class="form-control" placeholder="Buscar">
+            <button type="submit" class="mb-2">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+          <button class="btn btn-success float-sm-right mr-3" routerLink="novo-produto">Novo produto</button>
+        </div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <td>#</td>
+              <td>Nome</td>
+              <td>Progresso</td>
+              <td width="200">Ação</td>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr>
+              <th scope="row">1</th>
+              <td>Ooll</td>
+              <td>bblalaa</td>
+              <td>
+                <button class="btn btn-primary">
+                  <i class="fas fa-reply"></i> Reenviar</button>
+                <button class="btn btn-danger">
+                  <i class="fas fa-trash"></i> Excluir</button>
+              </td>
+            </tr>
+
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>#</td>
+              <td>Titulo</td>
+              <td>Mensagem</td>
+              <td width="200">Ação</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
   </div>
+
   <nav aria-label="Page navigation example">
-    
-      <pagination-controls 
-                      class="pagination justify-content-end"
-                      (pageChange)="p = $event"   
-                      maxSize="5"
-                      directionLinks="true"
-                      autoHide="true"
-                      previousLabel="Anterior"
-                      nextLabel="Próxima"
-                      screenReaderPaginationLabel="Paginação"
-                      screenReaderPageLabel="página"
-                      screenReaderCurrentLabel="Você está na página">
-      </pagination-controls>
-    
+
+    <pagination-controls class="pagination justify-content-end" (pageChange)="p = $event" maxSize="5" directionLinks="true" autoHide="true"
+      previousLabel="Anterior" nextLabel="Próxima" screenReaderPaginationLabel="Paginação" screenReaderPageLabel="página" screenReaderCurrentLabel="Você está na página">
+    </pagination-controls>
+
   </nav>
 </div>
 <app-footer></app-footer>

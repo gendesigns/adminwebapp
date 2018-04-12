@@ -40,3 +40,7 @@ input:checked + img{
 .getImage {
     display: none;
 }
+.modal-body{
+    max-height: 500px;
+    overflow: auto;
+}
