@@ -69,6 +69,14 @@ footer p{
 }
 .actions{
     margin: 10px 0;
+    overflow: hidden;
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+    background-color: #f4f4f4;
+    border-color: #f4f4f4; 
+}
+.nav-tabs .nav-link{
+    color: #664a90;
 }
 table .btn{
     margin-right: 5px;
@@ -104,4 +112,8 @@ table .btn{
 }
 img{
     max-width: 100%;
+}
+input, input:focus, input:active, button:focus, button:active{
+    border-color: #ced4da !important;
+    box-shadow: none !important;
 }
