@@ -4,7 +4,7 @@ export class Produto {
         public category: string,
         public family: string,
         public collection: string,
-        public details: Array<any>,
+        public tagsDetails: Array<any>=[],
         public image1: any,
         public image2: any,
         public image3: any,

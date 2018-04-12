@@ -22,6 +22,28 @@ export class Bd {
         })
     }
 
+    public getProducts(): Promise<any> {
+        
+        return new Promise((resolve, reject) => {
+
+            firebase.database().ref('produtos/Anéis')
+            .once('value')
+            .then((snapshot: any) => {
+                
+                let produtcs: Array<any> = []
+                snapshot.forEach((childSnapshot: any) => {
+                    let produtc = childSnapshot.val()
+                    produtcs = produtc
+                    console.log(produtcs)
+                });
+                
+                // resolve(produtcs)    
+            })
+            
+        })
+    }
+
+
     public enviaNoficacao(notificacao: any): void{
         let titulo = notificacao.titulo
 
@@ -41,16 +63,16 @@ export class Bd {
     public saveProductFb(product: any): void{
         let category = product.category
         let ref = product.ref
-        let detail = product.tagsDetails
+
         
         console.log('Chegamos até p service: ', product)
-        firebase.database().ref(`produtos/${category}/${ref}`)
-            .set({ 
+        firebase.database().ref(`produtos/${category}`)
+            .push({ 
                     ref: product.ref, 
                     category: product.category, 
-                    tagsDetails: product.tagsDetails, 
                     family: product.family, 
                     collection: product.collection, 
+                    tagsDetails: product.tagsDetails,
                     image1: product.image1,
                     image2: product.image2,
                     image3: product.image3,

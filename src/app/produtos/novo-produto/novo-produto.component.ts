@@ -32,7 +32,7 @@ export class NovoProdutoComponent implements OnInit {
   public category: string
   public family: string
   public collection: string
-  public tagsDetails: Array<any>
+  public tagsDetails: Array<any> = []
   public image1: string
   public image2: string
   public image3: string
@@ -51,7 +51,7 @@ export class NovoProdutoComponent implements OnInit {
     'category': new FormControl('', Validators.required),
     'family': new FormControl('', Validators.required),
     'collection': new FormControl('', Validators.required),
-    'tags': new FormControl('', Validators.required),
+    'tagsDetails': new FormControl(null),
     'image1': new FormControl('', Validators.required),
     'image2': new FormControl('', Validators.required),
     'image3': new FormControl('', Validators.required),
@@ -83,7 +83,8 @@ export class NovoProdutoComponent implements OnInit {
     'Gravata',
     'Perolas Sintéticas',
     'Escapulario',
-    'Cordão'
+    'Cordão',
+    'Choker'
   ];
 
   addTag(name) {
@@ -91,7 +92,7 @@ export class NovoProdutoComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
     firebase.auth().onAuthStateChanged((user) => {
       this.author = user.email
       this.createdAt = new Date()
@@ -141,7 +142,7 @@ export class NovoProdutoComponent implements OnInit {
       this.category = this.formulario.value.category,
       this.family = this.formulario.value.family,
       this.collection = this.formulario.value.collection,
-      this.tagsDetails = this.formulario.value.tags,
+      this.tagsDetails =  this.formulario.value.tagsDetails,
       this.image1 = this.get_image1, 
       this.image2 = this.get_image2, 
       this.image3 = this.get_image3, 
@@ -150,8 +151,14 @@ export class NovoProdutoComponent implements OnInit {
       this.createdAt
     )
     this.db.saveProductFb(product)
-    // console.log(product)
+    this.resetForm()
     
+  }
+
+  public resetForm():void {
+    this.formulario.reset() 
+    $( "#ref" ).focus();
+    $('.image').html('<a class="btn btn-success" style="width:25px;height:25px; padding:0"><i class="fas fa-plus"></i></a>');
   }
 
   public isDisabledProduct():void {
