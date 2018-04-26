@@ -1,7 +1,4 @@
 <app-header></app-header>
-<!-- <div *ngFor="let upload of uploads | async"></div>
-  <upload-detail [upload]='upload'></upload-detail>
-</div> -->
 
 <div class="container">
   <nav aria-label="breadcrumb">
@@ -33,103 +30,38 @@
     <div class="tab-pane fade show active" id="aneis" role="tabpanel" aria-labelledby="aneis-tab">
       <div class="jumbotron">
         <div class="actions m-1">
-          <span>Anéis</span>
           <div class="form-inline form-search float-sm-right">
-            <input type="search" class="form-control" placeholder="Buscar">
+            <input type="search" class="form-control" placeholder="Buscar" [(ngModel)]="searchAneis">
             <button type="submit" class="mb-2">
               <i class="fas fa-search"></i>
             </button>
           </div>
           <button class="btn btn-success float-sm-right mr-3" routerLink="novo-produto">Novo produto</button>
         </div>
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <td>#</td>
-              <td>Nome</td>
-              <td>Progresso</td>
-              <td>Detalhes</td>
-              <td width="200">Ação</td>
-            </tr>
-          </thead>
-          <tbody>
-
-            <tr>
-              <th scope="row">1</th>
-              <td>Ooll</td>
-              <td>bblalaa</td>
-              <td><span>Pedra Preta</span><span>Pedra Nude</span><span>Pérolas</span></td>              
-              <td>
-                <button class="btn btn-primary">
-                  <i class="fas fa-reply"></i> Reenviar</button>
-                <button class="btn btn-danger">
-                  <i class="fas fa-trash"></i> Excluir</button>
-              </td>
-            </tr>
-
-          </tbody>
-          <tfoot>
-            <tr>
-              <td>#</td>
-              <td>Titulo</td>
-              <td>Mensagem</td>
-              <td width="200">Ação</td>
-            </tr>
-          </tfoot>
-        </table>
+        <!-- TABLE ANEIS -->
+        <app-aneis [searchAneis]='searchAneis'></app-aneis>
+        <!-- TABLE ANEIS -->
       </div>
     </div>
     <div class="tab-pane fade" id="brincos" role="tabpanel" aria-labelledby="brincos-tab">
       <div class="jumbotron">
         <div class="actions m-1">
-          <span>Brincos</span>
           <div class="form-inline form-search float-sm-right">
-            <input type="search" class="form-control" placeholder="Buscar">
+            <input type="search" class="form-control" placeholder="Buscar" [(ngModel)]="searchBrincos">
             <button type="submit" class="mb-2">
               <i class="fas fa-search"></i>
             </button>
           </div>
           <button class="btn btn-success float-sm-right mr-3" routerLink="novo-produto">Novo produto</button>
         </div>
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <td>#</td>
-              <td>Nome</td>
-              <td>Progresso</td>
-              <td width="200">Ação</td>
-            </tr>
-          </thead>
-          <tbody>
-
-            <tr>
-              <th scope="row">1</th>
-              <td>Ooll</td>
-              <td>bblalaa</td>
-              <td>
-                <button class="btn btn-primary">
-                  <i class="fas fa-reply"></i> Reenviar</button>
-                <button class="btn btn-danger">
-                  <i class="fas fa-trash"></i> Excluir</button>
-              </td>
-            </tr>
-
-          </tbody>
-          <tfoot>
-            <tr>
-              <td>#</td>
-              <td>Titulo</td>
-              <td>Mensagem</td>
-              <td width="200">Ação</td>
-            </tr>
-          </tfoot>
-        </table>
+        <!-- TABLE BRINCOS -->
+        <app-brincos [searchBrincos]='searchBrincos'></app-brincos>
+        <!-- TABLE BRINCOS -->
       </div>
     </div>
     <div class="tab-pane fade" id="colares" role="tabpanel" aria-labelledby="colares-tab">
       <div class="jumbotron">
         <div class="actions m-1">
-          <span>Colares</span>
           <div class="form-inline form-search float-sm-right">
             <input type="search" class="form-control" placeholder="Buscar">
             <button type="submit" class="mb-2">
@@ -138,45 +70,14 @@
           </div>
           <button class="btn btn-success float-sm-right mr-3" routerLink="novo-produto">Novo produto</button>
         </div>
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <td>#</td>
-              <td>Nome</td>
-              <td>Progresso</td>
-              <td width="200">Ação</td>
-            </tr>
-          </thead>
-          <tbody>
-
-            <tr>
-              <th scope="row">1</th>
-              <td>Ooll</td>
-              <td>bblalaa</td>
-              <td>
-                <button class="btn btn-primary">
-                  <i class="fas fa-reply"></i> Reenviar</button>
-                <button class="btn btn-danger">
-                  <i class="fas fa-trash"></i> Excluir</button>
-              </td>
-            </tr>
-
-          </tbody>
-          <tfoot>
-            <tr>
-              <td>#</td>
-              <td>Titulo</td>
-              <td>Mensagem</td>
-              <td width="200">Ação</td>
-            </tr>
-          </tfoot>
-        </table>
+        <!-- TABLE COLARES -->
+        <app-colares [searchColares]='searchColares'></app-colares>
+        <!-- TABLE COLARES -->
       </div>
     </div>
     <div class="tab-pane fade" id="pingentes" role="tabpanel" aria-labelledby="pingentes-tab">
       <div class="jumbotron">
         <div class="actions m-1">
-          <span>Pingentes</span>
           <div class="form-inline form-search float-sm-right">
             <input type="search" class="form-control" placeholder="Buscar">
             <button type="submit" class="mb-2">
@@ -185,45 +86,14 @@
           </div>
           <button class="btn btn-success float-sm-right mr-3" routerLink="novo-produto">Novo produto</button>
         </div>
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <td>#</td>
-              <td>Nome</td>
-              <td>Progresso</td>
-              <td width="200">Ação</td>
-            </tr>
-          </thead>
-          <tbody>
-
-            <tr>
-              <th scope="row">1</th>
-              <td>Ooll</td>
-              <td>bblalaa</td>
-              <td>
-                <button class="btn btn-primary">
-                  <i class="fas fa-reply"></i> Reenviar</button>
-                <button class="btn btn-danger">
-                  <i class="fas fa-trash"></i> Excluir</button>
-              </td>
-            </tr>
-
-          </tbody>
-          <tfoot>
-            <tr>
-              <td>#</td>
-              <td>Titulo</td>
-              <td>Mensagem</td>
-              <td width="200">Ação</td>
-            </tr>
-          </tfoot>
-        </table>
+       <!-- TABLE PINGENTES -->
+       <app-pingentes [searchPingentes]='searchPingentes'></app-pingentes>
+       <!-- TABLE PINGENTES -->
       </div>
     </div>
     <div class="tab-pane fade" id="pulseiras" role="tabpanel" aria-labelledby="pulseiras-tab">
       <div class="jumbotron">
         <div class="actions m-1">
-          <span>Pulseiras</span>
           <div class="form-inline form-search float-sm-right">
             <input type="search" class="form-control" placeholder="Buscar">
             <button type="submit" class="mb-2">
@@ -232,86 +102,11 @@
           </div>
           <button class="btn btn-success float-sm-right mr-3" routerLink="novo-produto">Novo produto</button>
         </div>
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <td>#</td>
-              <td>Nome</td>
-              <td>Progresso</td>
-              <td width="200">Ação</td>
-            </tr>
-          </thead>
-          <tbody>
-
-            <tr>
-              <th scope="row">1</th>
-              <td>Ooll</td>
-              <td>bblalaa</td>
-              <td>
-                <button class="btn btn-primary">
-                  <i class="fas fa-reply"></i> Reenviar</button>
-                <button class="btn btn-danger">
-                  <i class="fas fa-trash"></i> Excluir</button>
-              </td>
-            </tr>
-
-          </tbody>
-          <tfoot>
-            <tr>
-              <td>#</td>
-              <td>Titulo</td>
-              <td>Mensagem</td>
-              <td width="200">Ação</td>
-            </tr>
-          </tfoot>
-        </table>
+        <!-- TABLE PULSEIRAS -->
+        <app-pulseiras [searchPulseiras]='searchPulseiras'></app-pulseiras>
+        <!-- TABLE PULSEIRAS -->
       </div>
     </div>
-<<<<<<< HEAD
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <td>IMAGEM</td>
-          <td>REFERÊNCIA</td>
-          <td>CATEGORIA</td>
-          <td>FAMILIA</td>
-          <td>COLEÇÃO</td>
-          <td>DETALHES</td>
-          <td width="200">AÇÃO</td>
-        </tr>
-      </thead>
-      <tbody>
-          
-        <tr *ngFor="let item of items | async">
-          <th scope="row"><img src="{{ item.image1 }}" width="40" height="40"/></th>
-          <td>{{ item.ref }}</td>
-          <td>{{ item.category }}</td>
-          <td>{{ item.family }}</td>
-          <td>{{ item.collection }}</td>
-          <td><span *ngFor="let tag of item.tagsDetails" style="background: #ccc; padding: 2px 4px; margin: 2px 0 2px 2px;">{{ tag.name }}</span></td>
-          <td>
-          <button class="btn btn-primary">
-              <i class="fas fa-reply"></i> Editar</button>
-          <button class="btn btn-danger" (click)="deleteItem(item.key)">
-              <i class="fas fa-trash"></i> Excluir</button>
-          </td>
-        </tr>
-        
-      </tbody>
-      <tfoot>
-        <tr>
-          <td>IMAGEM</td>
-          <td>REFERÊNCIA</td>
-          <td>CATEGORIA</td>
-          <td>FAMILIA</td>
-          <td>COLEÇÃO</td>
-          <td>DETALHES</td>
-          <td width="200">AÇÃO</td>
-        </tr>
-      </tfoot>
-    </table>
-=======
->>>>>>> 7ff4a2cac8cbc8714be51230299b74e46760144a
   </div>
 
   <nav aria-label="Page navigation example">

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
 import * as firebase from 'firebase'
@@ -6,12 +6,16 @@ import { Auth } from '../../auth.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
+import { Categoria } from '../nova-categoria/categoria.model';
+
 @Component({
-  selector: 'app-lista-categorias',
-  templateUrl: './lista-categorias.component.html',
-  styleUrls: ['./lista-categorias.component.css']
+  selector: 'app-atualiza-categoria',
+  templateUrl: './atualiza-categoria.component.html',
+  styleUrls: ['./atualiza-categoria.component.css']
 })
-export class ListaCategoriasComponent {
+export class AtualizaCategoriaComponent implements OnInit {
+
+  @Input() keyCategoria
 
   public formulario: FormGroup = new FormGroup({
     'name': new FormControl(null)
@@ -20,8 +24,6 @@ export class ListaCategoriasComponent {
   public name: string
   public author: string
   public createdAt: any
-
-  public keyCategoria: string
 
 
   public itemsRef: AngularFireList<any>;
@@ -37,16 +39,24 @@ export class ListaCategoriasComponent {
     
   }
 
-  updateCategory(key) {
-    this.keyCategoria = key
+  ngOnInit() {
+    firebase.auth().onAuthStateChanged((user) => {
+      this.author = user.email
+      this.createdAt = new Date()
+    })
   }
-  deleteItem(key: string) {    
-    this.itemsRef.remove(key); 
-    console.log(key)
 
-  }
-  deleteEverything() {
-    // this.itemsRef.remove();
+  updateItem(key: string) {
+    let categoria: Categoria = new Categoria(
+      this.name = this.formulario.value.name,
+      this.author,
+      this.createdAt
+    )
+    this.keyCategoria = key
+    this.itemsRef.update(this.keyCategoria, categoria )
+    .then(()=>{
+      console.log('Categoria atualizada:', categoria)
+    })
   }
 
 }

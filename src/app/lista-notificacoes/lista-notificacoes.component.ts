@@ -1,15 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
+import * as firebase from 'firebase'
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/Rx';
 
 @Component({
   selector: 'app-lista-notificacoes',
   templateUrl: './lista-notificacoes.component.html',
   styleUrls: ['./lista-notificacoes.component.css']
 })
-export class ListaNotificacoesComponent implements OnInit {
+export class ListaNotificacoesComponent {
 
-  constructor() { }
+  public itemsRef: AngularFireList<any>;
+  public notificacoes: Observable<any[]>;
+  
+  constructor(private db: AngularFireDatabase) { 
 
-  ngOnInit() {
+    this.itemsRef = db.list('notificacoes/ZG91Z2xhc2FydHNAZ21haWwuY29t');
+    // Use snapshotChanges().map() to store the key
+    this.notificacoes = this.itemsRef.snapshotChanges().map(changes => {
+      return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+    });
   }
 
 }

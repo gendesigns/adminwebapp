@@ -3,7 +3,7 @@ export class Notificacao {
         public titulo: string,
         public texto: string,
         public autor: string,
-        public dataHora: any,
+        public createdAt: string,
         public lida: boolean
     ) {}
 }

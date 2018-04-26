@@ -15,8 +15,6 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
-
-
 declare let jQuery: any;
 declare let $: any
 

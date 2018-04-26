@@ -38,6 +38,13 @@ import { FileSizePipe } from './file-size.pipe';
 import { UploadModule } from './uploads/shared/upload.module';
 import { UploadService } from './uploads/shared/upload.service';
 
+import { BrincosComponent } from './produtos/lista-produtos/brincos/brincos.component';
+import { AneisComponent } from './produtos/lista-produtos/aneis/aneis.component';
+import { ColaresComponent } from './produtos/lista-produtos/colares/colares.component';
+import { PingentesComponent } from './produtos/lista-produtos/pingentes/pingentes.component';
+import { PulseirasComponent } from './produtos/lista-produtos/pulseiras/pulseiras.component';
+import { AtualizaCategoriaComponent } from './categorias/atualiza-categoria/atualiza-categoria.component';
+
 
 // import { UploadService } from './uploads/shared/upload.service';
 
@@ -61,6 +68,12 @@ import { UploadService } from './uploads/shared/upload.service';
     DropZoneDirective,
     FileUploadComponent,
     FileSizePipe,
+    BrincosComponent,
+    AneisComponent,
+    ColaresComponent,
+    PingentesComponent,
+    PulseirasComponent,
+    AtualizaCategoriaComponent,
   ],
   imports: [
     BrowserModule,

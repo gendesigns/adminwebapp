@@ -1,0 +1,10 @@
+td span{
+    background: rgba(23, 162, 184, 0.8);
+    padding: 3px 8px;
+    margin-right: 3px;
+    margin-bottom: 3px;
+    display: inline-block;
+    border-radius: 10px;
+    font-size: 11px;
+    color: #fff;
+}
