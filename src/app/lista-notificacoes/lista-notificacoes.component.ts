@@ -13,15 +13,28 @@ import 'rxjs/Rx';
 export class ListaNotificacoesComponent {
 
   public itemsRef: AngularFireList<any>;
+  public itemsRef2: AngularFireList<any>;
   public notificacoes: Observable<any[]>;
+  public notificacoes2: Observable<any[]>;
   
   constructor(private db: AngularFireDatabase) { 
 
     this.itemsRef = db.list('notificacoes/ZG91Z2xhc2FydHNAZ21haWwuY29t');
+    this.itemsRef2 = db.list('notificacoes/');
     // Use snapshotChanges().map() to store the key
     this.notificacoes = this.itemsRef.snapshotChanges().map(changes => {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
     });
+    this.notificacoes2 = this.itemsRef2.snapshotChanges().map(changes => {
+      return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+    });
+  }
+  deleteItem(key: string) {    
+    // console.log(key)
+    for(let notificacao in this.notificacoes2) {
+      console.log(notificacao[0])
+    }
+    // this.itemsRef.remove(key); 
   }
 
 }

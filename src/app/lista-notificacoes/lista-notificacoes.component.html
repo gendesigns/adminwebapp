@@ -35,7 +35,7 @@
           <td>{{ notificacao.autor}}</td>
           <td>{{ notificacao.dataHora | date: 'dd/MM/yyyy'}}</td>
           <td>
-            <button class="btn btn-danger">
+            <button class="btn btn-danger" (click)="deleteItem(notificacao.key)">
               <i class="fas fa-trash"></i> Excluir</button>
           </td>
         </tr>
