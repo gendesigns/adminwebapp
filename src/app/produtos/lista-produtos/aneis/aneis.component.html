@@ -12,7 +12,7 @@
   </thead>
   <tbody>
 
-    <tr *ngFor="let anel of aneis | async | filter:searchAneis">
+    <tr *ngFor="let anel of aneis | async | filter:searchAneis | paginate: { itemsPerPage: 20, currentPage: pAneis, id:'pAneis' }">
       <td scope="row"><img src="{{ anel.image1 }}" width="40" height="40"/></td>
       <td>{{ anel.ref }}</td>
       <td>{{ anel.category }}</td>
@@ -31,13 +31,13 @@
   </tbody>
   <tfoot>
     <tr>
-      <td>IMAGEM</td>
-      <td>REFERÊNCIA</td>
-      <td>CATEGORIA</td>
-      <td>COLEÇÃO</td>
-      <td>DETALHES</td>
-      <td>FAMILIA</td>
-      <td width="200">AÇÃO</td>
+      
     </tr>
   </tfoot>
 </table>
+
+<nav aria-label="Page navigation example">
+  <pagination-controls class="pagination justify-content-end" (pageChange)="pAneis = $event" id="pAneis" maxSize="5" directionLinks="true" autoHide="true"
+    previousLabel="Anterior" nextLabel="Próxima" screenReaderPaginationLabel="Paginação" screenReaderPageLabel="página" screenReaderCurrentLabel="Você está na página">
+  </pagination-controls>
+</nav>

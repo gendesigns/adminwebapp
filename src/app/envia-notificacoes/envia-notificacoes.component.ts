@@ -16,7 +16,7 @@ export class EnviaNotificacoesComponent implements OnInit {
   public dataHora: any
   public lida: boolean = false
 
-  private formulario: FormGroup = new FormGroup({
+  public formulario: FormGroup = new FormGroup({
     'titulo': new FormControl(null),
     'texto': new FormControl(null)
   })

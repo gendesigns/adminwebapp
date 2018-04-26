@@ -7,6 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListaProdutosComponent implements OnInit {
 
+  public searchAneis
+  public searchBrincos
+  public searchColares
+  public searchPingentes
+  public searchPulseiras
+  public p
+
   constructor() { }
 
   ngOnInit() {}

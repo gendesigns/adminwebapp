@@ -12,6 +12,9 @@ import { Observable } from 'rxjs/Observable';
 })
 export class UploadsListComponent implements OnInit {
 
+  public term
+  public p
+
   uploads: Observable<Upload[]>;
   showSpinner = true;
 

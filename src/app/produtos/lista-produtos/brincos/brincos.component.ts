@@ -14,6 +14,8 @@ export class BrincosComponent {
 
   @Input() searchBrincos;
 
+  public pBrincos
+
   public itemsRef: AngularFireList<any>;
   public brincos: Observable<any[]>;
   

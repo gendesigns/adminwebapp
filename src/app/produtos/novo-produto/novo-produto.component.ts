@@ -43,6 +43,12 @@ export class NovoProdutoComponent implements OnInit {
   public get_image3: string
   public uploads
   public items
+  
+  // Models
+  public imgContent
+  public term
+  public updateImg
+  public addTagPromise
 
   public formulario: FormGroup = new FormGroup({
     'ref': new FormControl('', Validators.required),

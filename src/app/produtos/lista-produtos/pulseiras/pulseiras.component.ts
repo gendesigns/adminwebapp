@@ -15,6 +15,8 @@ export class PulseirasComponent {
 
   @Input() searchPulseiras;
 
+  public pPulseiras
+
   public itemsRef: AngularFireList<any>;
   public pulseiras: Observable<any[]>;
   

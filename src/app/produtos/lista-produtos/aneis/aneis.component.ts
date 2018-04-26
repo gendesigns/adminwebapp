@@ -14,9 +14,12 @@ export class AneisComponent {
 
   @Input() searchAneis;
 
+
+  public pAneis
+
   public itemsRef: AngularFireList<any>;
   public aneis: Observable<any[]>;
-  
+
   constructor(private db: AngularFireDatabase, private auth: Auth) { 
 
     this.itemsRef = db.list('produtos/Anéis');

@@ -13,7 +13,7 @@
     </thead>
     <tbody>
 
-      <tr *ngFor="let brinco of brincos | async | filter:searchBrincos">
+      <tr *ngFor="let brinco of brincos | async | filter:searchBrincos | paginate: { itemsPerPage: 20, currentPage: pBrincos, id:'pBrincos' }">
         <td scope="row"><img src="{{ brinco.image1 }}" width="40" height="40"/></td>
         <td>{{ brinco.ref }}</td>
         <td>{{ brinco.category }}</td>
@@ -32,13 +32,13 @@
     </tbody>
     <tfoot>
       <tr>
-        <td>IMAGEM</td>
-        <td>REFERÊNCIA</td>
-        <td>CATEGORIA</td>
-        <td>COLEÇÃO</td>
-        <td>DETALHES</td>
-        <td>FAMILIA</td>
-        <td width="200">AÇÃO</td>
+
       </tr>
     </tfoot>
   </table>
+
+  <nav aria-label="Page navigation example">
+    <pagination-controls class="pagination justify-content-end" (pageChange)="pBrincos = $event" id="pBrincos" maxSize="5" directionLinks="true" autoHide="true"
+      previousLabel="Anterior" nextLabel="Próxima" screenReaderPaginationLabel="Paginação" screenReaderPageLabel="página" screenReaderCurrentLabel="Você está na página">
+    </pagination-controls>
+  </nav>

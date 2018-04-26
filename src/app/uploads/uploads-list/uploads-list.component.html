@@ -36,7 +36,7 @@
       </thead>
       <tbody>
 
-        <tr *ngFor="let upload of uploads | async | filter:term | paginate: { itemsPerPage: 05, currentPage: p }">
+        <tr *ngFor="let upload of uploads | async | filter:term | paginate: { itemsPerPage: 20, currentPage: p }">
           <upload-detail [upload]='upload'></upload-detail>
           <!-- <td scope="row">
             <img src="{{upload.url}}" width="40" height="40">

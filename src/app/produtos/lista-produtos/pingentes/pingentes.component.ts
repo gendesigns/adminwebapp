@@ -15,6 +15,8 @@ export class PingentesComponent {
 
   @Input() searchPingentes;
 
+  public pPingentes
+
   public itemsRef: AngularFireList<any>;
   public pingentes: Observable<any[]>;
   

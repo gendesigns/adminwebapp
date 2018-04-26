@@ -15,6 +15,8 @@ export class ColaresComponent {
 
   @Input() searchColares;
 
+  public pColares
+
   public itemsRef: AngularFireList<any>;
   public colares: Observable<any[]>;
   
