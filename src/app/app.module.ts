@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 import { NgSelectModule } from '@ng-select/ng-select';
 import {NgxPaginationModule} from 'ngx-pagination'; 
+import {NgPipesModule} from 'ngx-pipes';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import { AngularFireModule } from 'angularfire2';
@@ -82,6 +83,7 @@ import { AtualizaCategoriaComponent } from './categorias/atualiza-categoria/atua
     NgSelectModule,
     AppRoutingModule,
     NgxPaginationModule,
+    NgPipesModule,
     AngularFirestoreModule,
     AngularFireDatabaseModule,
     AngularFireStorageModule,

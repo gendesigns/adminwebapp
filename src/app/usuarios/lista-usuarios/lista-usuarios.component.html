@@ -10,8 +10,11 @@
   </nav>
   <div class="jumbotron">
     <div class="actions">
+      <p>Usuários cadastrados: {{ countUsers }}</p>
+      <p>{{ userName }}</p>
+      <p>{{ userCidade }}</p>
       <div class="form-inline form-search float-sm-right">
-        <input type="search" class="form-control" placeholder="Buscar">
+        <input type="search" class="form-control" placeholder="Buscar" [(ngModel)]="search">
         <button type="submit" class="mb-2">
           <i class="fas fa-search"></i>
         </button>
@@ -20,75 +23,35 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <td>#</td>
-          <td>Titulo</td>
-          <td>Mensagem</td>
+          <td>Nome</td>
+          <td>E-mail</td>
           <td width="200">Ação</td>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
+        <tr *ngFor="let user of users  | async | filterBy: ['displayName']: '' | orderBy:'-amount'| filter:search | paginate: { itemsPerPage: 20, currentPage: p, id:'p'} ">
+          <td>{{ user.displayName}}</td>
+          <td>{{ user.email}}</td>
           <td>
-            <button class="btn btn-primary">
-              <i class="fas fa-reply"></i> Reenviar</button>
-            <button class="btn btn-danger">
-              <i class="fas fa-trash"></i> Excluir</button>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>
-            <button class="btn btn-primary">
-              <i class="fas fa-reply"></i> Reenviar</button>
-            <button class="btn btn-danger">
-              <i class="fas fa-trash"></i> Excluir</button>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>
-            <button class="btn btn-primary">
-              <i class="fas fa-reply"></i> Reenviar</button>
-            <button class="btn btn-danger">
+            <button class="btn btn-danger" (click)="getAlbumById(user.email)">
               <i class="fas fa-trash"></i> Excluir</button>
           </td>
         </tr>
       </tbody>
       <tfoot>
         <tr>
-          <td>#</td>
-          <td>Titulo</td>
-          <td>Mensagem</td>
+          <td>Nome</td>
+          <td>E-mail</td>
           <td width="200">Ação</td>
         </tr>
       </tfoot>
     </table>
   </div>
+
   <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-end">
-      <li class="page-item">
-        <a class="page-link" href="#">Anterior</a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" href="#">1</a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" href="#">2</a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" href="#">3</a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" href="#">Próxima</a>
-      </li>
-    </ul>
-  </nav>
+      <pagination-controls class="pagination justify-content-end" (pageChange)="p = $event" id="p" maxSize="5" directionLinks="true" autoHide="true"
+        previousLabel="Anterior" nextLabel="Próxima" screenReaderPaginationLabel="Paginação" screenReaderPageLabel="página" screenReaderCurrentLabel="Você está na página">
+      </pagination-controls>
+    </nav>
 </div>
 <app-footer></app-footer>

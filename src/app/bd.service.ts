@@ -53,7 +53,7 @@ export class Bd {
                         titulo: notificacao.titulo, 
                         texto: notificacao.texto, 
                         autor: notificacao.autor, 
-                        dataHora: notificacao.dataHora,
+                        createdAt: notificacao.createdAt,
                         lida: notificacao.lida
                     })
 

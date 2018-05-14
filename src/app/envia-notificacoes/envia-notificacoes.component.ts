@@ -13,7 +13,7 @@ import { Bd } from '../bd.service'
 export class EnviaNotificacoesComponent implements OnInit {
 
   public autor: string
-  public dataHora: any
+  public createdAt: any
   public lida: boolean = false
 
   public formulario: FormGroup = new FormGroup({
@@ -27,7 +27,7 @@ export class EnviaNotificacoesComponent implements OnInit {
   ngOnInit() {
     firebase.auth().onAuthStateChanged((user) => {
       this.autor = user.email
-      this.dataHora = Date.now();
+      this.createdAt = Date.now();
     })
   }
 
@@ -36,7 +36,7 @@ export class EnviaNotificacoesComponent implements OnInit {
       this.formulario.value.titulo,
       this.formulario.value.texto,
       this.autor,
-      this.dataHora,
+      this.createdAt,
       this.lida
     )
     this.bd.enviaNoficacao(notificacao)
