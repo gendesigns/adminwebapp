@@ -18,6 +18,9 @@ export class ListaUsuariosComponent {
   public getUser: Array<any>
   public userCidade: any;
 
+  public search
+  public p
+
   public basePath = '/usuario_detalhe'
 
   constructor(private userService:UserService) { 
