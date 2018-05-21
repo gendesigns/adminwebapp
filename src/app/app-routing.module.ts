@@ -16,15 +16,15 @@ import { UploadFormComponent } from './uploads/upload-form/upload-form.component
 
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'notificacoes', component: ListaNotificacoesComponent },
+  { path: 'home', component: HomeComponent , canActivate: [ AuthGuard ] },
+  { path: 'notificacoes', component: ListaNotificacoesComponent, canActivate: [ AuthGuard ] },
   { path: 'add-notificacao', component: EnviaNotificacoesComponent, canActivate: [ AuthGuard ] },
-  { path: 'produtos', component: ListaProdutosComponent},
-  { path: 'produtos/novo-produto', component: NovoProdutoComponent},
-  { path: 'categorias', component: ListaCategoriasComponent},
-  { path: 'categorias/nova-categoria', component: NovaCategoriaComponent},
-  { path: 'usuarios', component: ListaUsuariosComponent},  
-  { path: 'biblioteca', component: BibliotecaComponent},  
+  { path: 'produtos', component: ListaProdutosComponent, canActivate: [ AuthGuard ] },
+  { path: 'produtos/novo-produto', component: NovoProdutoComponent, canActivate: [ AuthGuard ] },
+  { path: 'categorias', component: ListaCategoriasComponent, canActivate: [ AuthGuard ] },
+  { path: 'categorias/nova-categoria', component: NovaCategoriaComponent, canActivate: [ AuthGuard ] },
+  { path: 'usuarios', component: ListaUsuariosComponent, canActivate: [ AuthGuard ] },  
+  { path: 'biblioteca', component: BibliotecaComponent, canActivate: [ AuthGuard ] },  
   { path: 'uploads', loadChildren: './uploads/shared/upload.module#UploadModule' },
   //{ path: 'login', component: LoginComponent},
   { path: '', component: LoginComponent} 

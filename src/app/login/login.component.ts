@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from "@angular/forms";
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 import { Auth } from '../auth.service';
 
@@ -15,9 +15,17 @@ export class LoginComponent implements OnInit {
     'password': new FormControl(null)
   })
 
-  constructor( private auth: Auth ) { }
+  constructor( private auth: Auth, private formBuilder: FormBuilder ) { }
 
   ngOnInit() {
+    this.configuraFormulario()
+  }
+
+  configuraFormulario() {
+    this.formulario = this.formBuilder.group({
+      email: [null, [Validators.required, Validators.email]],
+      password: [null, Validators.required]
+    })
   }
 
   public autenticar(): void {

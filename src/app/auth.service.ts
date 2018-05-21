@@ -18,7 +18,7 @@ export class Auth{
                         this.token_id = idToken
                         localStorage.setItem('idToken', idToken)
                         
-                        this.router.navigate(['/add-notificacao'])
+                        this.router.navigate(['/home'])
                         
                     })
             })

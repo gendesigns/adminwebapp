@@ -18,7 +18,7 @@
             type="password"
             formControlName="password">
         </div>
-        <button type="submit" class="btn btn-success btn-block">Entrar</button>
+        <button type="submit" class="btn btn-success btn-block" [disabled]="formulario.invalid">Entrar</button>
       </form>
     </div>
   </div>
