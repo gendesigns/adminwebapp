@@ -56,7 +56,7 @@ export class NovoProdutoComponent implements OnInit {
   public loading = false;
   public tagsNames: Array<any> = [
     'Ajustável',
-    'Aplicação de Rhodium Negro',
+    'Aplicação de Rhodium',
     'Cristal',
     'Cristais',
     'Cordão',
