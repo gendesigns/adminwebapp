@@ -14,7 +14,7 @@ export class AneisComponent {
 
   @Input() searchAneis;
 
-
+  public keyAnel: string
   public pAneis
 
   public itemsRef: AngularFireList<any>;
@@ -23,7 +23,6 @@ export class AneisComponent {
   constructor(private db: AngularFireDatabase, private auth: Auth) { 
 
     this.itemsRef = db.list('produtos/Anéis');
-    // Use snapshotChanges().map() to store the key
     this.aneis = this.itemsRef.snapshotChanges().map(changes => {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
     });
@@ -33,15 +32,11 @@ export class AneisComponent {
   addItem(newName: string) {
     this.itemsRef.push({ text: newName });
   }
-  updateItem(key: string, newText: string) {
-    this.itemsRef.update(key, { text: newText });
+  updateItem(key: string) {
+    this.keyAnel = key
   }
   deleteItem(key: string) {    
-    // this.itemsRef.remove(key); 
-    console.log(key)
-  }
-  deleteEverything() {
-    // this.itemsRef.remove();
+    this.itemsRef.remove(key);
   }
 
 }

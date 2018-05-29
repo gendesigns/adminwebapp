@@ -1,0 +1,26 @@
+<div class="modal-content">
+  <div class="modal-header">
+    
+      <h5 class="modal-title" id="exampleModalLabel">Atualizar Detalhe</h5>
+        
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="updateTagDetalhes(keyTagDetalhes)">
+      <div *ngFor="let detalhe of tagDetalhes | async">
+        <div *ngIf="detalhe.key == keyTagDetalhes">
+          <div class="modal-body">
+            <div class="input-group">
+              <input type="search" class="form-control" value="{{ detalhe.name }}" formControlName="name">
+            </div>
+          </div>
+        </div>
+      </div>  
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary btn-save">Atualizar</button>
+      </div>
+    </form>
+</div>

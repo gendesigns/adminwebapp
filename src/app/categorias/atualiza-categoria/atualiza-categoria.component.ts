@@ -42,17 +42,18 @@ export class AtualizaCategoriaComponent implements OnInit {
   ngOnInit() {
     firebase.auth().onAuthStateChanged((user) => {
       this.author = user.email
-      this.createdAt = new Date()
     })
   }
 
   updateItem(key: string) {
+    this.keyCategoria = key
+    this.createdAt = new Date()
+    
     let categoria: Categoria = new Categoria(
       this.name = this.formulario.value.name,
       this.author,
       this.createdAt
     )
-    this.keyCategoria = key
     this.itemsRef.update(this.keyCategoria, categoria )
     .then(()=>{
       console.log('Categoria atualizada:', categoria)

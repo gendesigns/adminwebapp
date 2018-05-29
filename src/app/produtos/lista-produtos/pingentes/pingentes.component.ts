@@ -23,7 +23,6 @@ export class PingentesComponent {
   constructor(private db: AngularFireDatabase, private auth: Auth) { 
 
     this.itemsRef = db.list('produtos/Pingentes');
-    // Use snapshotChanges().map() to store the key
     this.pingentes = this.itemsRef.snapshotChanges().map(changes => {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
     });
@@ -39,9 +38,5 @@ export class PingentesComponent {
   deleteItem(key: string) {    
     this.itemsRef.remove(key); 
   }
-  deleteEverything() {
-    this.itemsRef.remove();
-  }
-
 
 }

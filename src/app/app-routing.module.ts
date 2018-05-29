@@ -3,10 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth-guard.service';
 
 import { HomeComponent } from './home/home.component';
+import { ColecoesComponent } from './colecoes/colecoes.component';
+import { TagDetalhesComponent } from './tag-detalhes/tag-detalhes.component';
 import { ListaNotificacoesComponent } from './lista-notificacoes/lista-notificacoes.component';
 import { EnviaNotificacoesComponent } from './envia-notificacoes/envia-notificacoes.component';
 import { ListaProdutosComponent } from './produtos/lista-produtos/lista-produtos.component';
 import { NovoProdutoComponent } from './produtos/novo-produto/novo-produto.component';
+import { EditarProdutoComponent } from './produtos/editar-produto/editar-produto.component';
 import { ListaCategoriasComponent } from './categorias/lista-categorias/lista-categorias.component';
 import { NovaCategoriaComponent } from './categorias/nova-categoria/nova-categoria.component';
 import { ListaUsuariosComponent } from './usuarios/lista-usuarios/lista-usuarios.component';
@@ -17,10 +20,13 @@ import { UploadFormComponent } from './uploads/upload-form/upload-form.component
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent , canActivate: [ AuthGuard ] },
+  { path: 'colecoes', component: ColecoesComponent , canActivate: [ AuthGuard ] },
+  { path: 'detalhes', component: TagDetalhesComponent , canActivate: [ AuthGuard ] },
   { path: 'notificacoes', component: ListaNotificacoesComponent, canActivate: [ AuthGuard ] },
   { path: 'add-notificacao', component: EnviaNotificacoesComponent, canActivate: [ AuthGuard ] },
   { path: 'produtos', component: ListaProdutosComponent, canActivate: [ AuthGuard ] },
   { path: 'produtos/novo-produto', component: NovoProdutoComponent, canActivate: [ AuthGuard ] },
+  { path: 'produtos/editar-produto/:id', component: EditarProdutoComponent, canActivate: [ AuthGuard ] },
   { path: 'categorias', component: ListaCategoriasComponent, canActivate: [ AuthGuard ] },
   { path: 'categorias/nova-categoria', component: NovaCategoriaComponent, canActivate: [ AuthGuard ] },
   { path: 'usuarios', component: ListaUsuariosComponent, canActivate: [ AuthGuard ] },  

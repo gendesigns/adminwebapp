@@ -1,7 +1,10 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 import { Produto } from './produto.model';
 
+import { TagDetalhesService } from '../../tag-detalhes/tag-detalhes.service';
+import { ColecoesService } from '../../colecoes/colecoes.service';
 import { UploadService } from '../../uploads/shared/upload.service';
 import { Upload } from '../../uploads/shared/upload';
 
@@ -14,6 +17,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
+import { TagDetalhes } from '../../tag-detalhes/tag-detalhes.model';
+
 
 declare let jQuery: any;
 declare let $: any
@@ -21,7 +26,8 @@ declare let $: any
 @Component({
   selector: 'app-novo-produto',
   templateUrl: './novo-produto.component.html',
-  styleUrls: ['./novo-produto.component.css']
+  styleUrls: ['./novo-produto.component.css'],
+  providers: [ ColecoesService, TagDetalhesService ]
 })
 export class NovoProdutoComponent implements OnInit {
 
@@ -37,12 +43,41 @@ export class NovoProdutoComponent implements OnInit {
   public disabledProduct: boolean
   public author: string
   public createdAt
+  public lista_colecoes = new Array<any>();
+  public lista_detalhes = new Array<any>();
 
   public get_image1: string
   public get_image2: string
   public get_image3: string
   public uploads
   public items
+
+  public selectedCompanyCustomPromise: any
+  public loading = false;
+  public tagsNames: Array<any> = [
+    'Ajustável',
+    'Aplicação de Rhodium Negro',
+    'Cristal',
+    'Cristais',
+    'Cordão',
+    'Choker',
+    'Ear jacket',
+    'Ear cuff',
+    'Ear hook',
+    'Escapulario',
+    'Gargantilha',
+    'Gargantilha com Pingente',
+    'Gravata',
+    'Pedra Verde',
+    'Pedra Preta',
+    'Pedra Nude',
+    'Pérola',
+    'Religioso',
+    'Piercing',
+    'Perolas Sintéticas',
+    'Zircônia',
+    'Zircônias',
+  ]
   
   // Models
   public imgContent
@@ -63,48 +98,40 @@ export class NovoProdutoComponent implements OnInit {
     'author': new FormControl('', Validators.required)
   })
 
-  constructor( private auth:Auth, private upSvc: UploadService, private db:Bd ) { }
-  
-  selectedCompanyCustomPromise: any
-  tags: any[] = [];
-  loading = false;
-  tagsNames = [
-    'Zircônia',
-    'Zircônias',
-    'Cristal',
-    'Cristais',
-    'Pedra Verde',
-    'Pedra Preta',
-    'Anel ajustável',
-    'Ear Jacket',
-    'Ear Cuff',
-    'Piercing',
-    'Aplicação de Rhodium Negro',
-    'Pedra Nude',
-    'Ajustável',
-    'Gargantilha',
-    'Gargantilha com Pingente',
-    'Gravata',
-    'Perolas Sintéticas',
-    'Escapulario',
-    'Cordão',
-    'Choker'
-  ];
-
+  constructor( 
+      private auth:Auth, 
+      private upSvc: UploadService, 
+      private db:Bd,
+      private colecoesService: ColecoesService,
+      private tagDetalhesService: TagDetalhesService,
+      private dataService: TagDetalhesService
+  ) { }
+ 
   addTag(name) {
       return { name: name, tag: true };
   }
 
   ngOnInit() {
 
+    // GET Collections
+    this.colecoesService.getCollections()
+      .subscribe(data => {
+        this.lista_colecoes = data
+      }, error => { console.log(error) }
+    )
+    // GET Collections
+
+  
+    // GET User
     firebase.auth().onAuthStateChanged((user) => {
       this.author = user.email
-      this.createdAt = new Date()
     })
+    // GET User
 
-    this.tagsNames.forEach((c, i) => {
-        this.tags.push({ id: i, name: c });
-    });
+    // this.tagsNames2.forEach((c, i) => {
+    //   this.tags.push({ id: i, name: c });
+    // });
+    // console.log(this.tags)
 
     $(document).on('click', '.image', function () {
       var data_box = $(this).attr('data-box');
@@ -136,7 +163,7 @@ export class NovoProdutoComponent implements OnInit {
   }
 
   public saveProduct():void {
-    
+    this.createdAt = new Date()
     this.get_image1 = $('#image1').val();
     this.get_image2 = $('#image2').val();
     this.get_image3 = $('#image3').val();

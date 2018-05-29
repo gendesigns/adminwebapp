@@ -55,14 +55,7 @@
         <div class="form-group">
           <label>Coleção</label>
           <select class="custom-select" formControlName="collection" required>
-            <option selected>Selecione a coleção</option>
-            <option value="Alice">Alice</option>
-            <option value="Brenda">Brenda</option>
-            <option value="Débora">Débora</option>
-            <option value="Duda">Duda</option>
-            <option value="Maria Antônia">Maria Antônia</option>
-            <option value="Raquel">Raquel</option>
-            <option value="Linha Permanente">Linha Permanente</option>
+            <option *ngFor="let colecao of lista_colecoes" value="{{ colecao.title }}">{{ colecao.title }}</option>
           </select>
         </div>
         <div class="form-group">
@@ -70,7 +63,7 @@
           
           <ng-select
               formControlName="tagsDetails"
-              [items]="tags"
+              [items]="tagsNames"
               [addTag]="addTagPromise"
               multiple="true"
               bindLabel="name"
@@ -144,6 +137,7 @@
             <label for="{{image.name}}">
               <input type="radio" name="img" id="{{image.name}}">
               <img src="{{image.url}}" />
+              <small>{{image.name}}</small>
             </label>
           </div>
         </div>

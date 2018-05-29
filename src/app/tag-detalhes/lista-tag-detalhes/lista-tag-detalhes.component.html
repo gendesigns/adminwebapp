@@ -1,0 +1,70 @@
+
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="#">Home</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Tags Detalhes</li>
+    </ol>
+  </nav>
+  <div class="jumbotron">
+    <div class="actions">
+      <button class="btn btn-primary" data-toggle="modal" data-target="#nova">
+        <i class="fas fa-plus-circle"></i> Novo Detalhe</button>
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <td>NOME</td>
+          <td>CRIADO POR</td>
+          <td>DATA</td>
+          <td width="200">AÇÃO</td>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let detalhes of lista_tag_detalhes ">
+          <td>{{ detalhes.title }}</td>
+          <td>{{ detalhes.author }}</td>
+          <td>{{ detalhes.createdAt | date: 'dd/MM/yyyy - HH:mm'}}</td>
+          <td>
+            <button class="btn btn-primary" (click)="selectTagDetalhes(detalhes.key, detalhes.title)" data-toggle="modal" data-target="#atualiza">
+              <i class="fas fa-edit"></i> Editar</button>
+            <button class="btn btn-danger" (click)="selectTagDetalhes(detalhes.key)" data-toggle="modal" data-target="#delete">
+                <i class="fas fa-minus-circle"></i> Excluir</button>
+          </td>
+        </tr>
+
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>NOME</td>
+          <td>CRIADO POR</td>
+          <td>DATA</td>
+          <td width="200">AÇÃO</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+
+<!-- Modal Deletar Tag Detalhes -->
+<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+      <app-deletar-tag-detalhes [keyTagDetalhes]='keyTagDetalhes'></app-deletar-tag-detalhes>
+    </div>
+  </div>
+
+<!-- Modal Nova Tag Detalhes -->
+<div class="modal fade" id="nova" tabindex="-1" role="dialog" aria-labelledby="nova" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <app-nova-tag-detalhes></app-nova-tag-detalhes>
+  </div>
+</div>
+<!-- Modal Atualiza Tag Detalhes -->
+<div class="modal fade" id="atualiza" tabindex="-1" role="dialog" aria-labelledby="biblioteca" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <app-atualiza-tag-detalhes [keyTagDetalhes]='keyTagDetalhes' [title]='title'></app-atualiza-tag-detalhes>
+  </div>
+</div>

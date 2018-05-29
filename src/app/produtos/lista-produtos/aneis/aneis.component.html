@@ -21,7 +21,7 @@
       <td>{{ anel.family }}</td>
       
       <td>
-        <button class="btn btn-primary" (click)="editItem(anel.key)">
+        <button class="btn btn-primary" routerLink="/produtos/editar-produto/{{ anel.key }}">
           <i class="fas fa-reply"></i> Editar</button>
         <button class="btn btn-danger" (click)="deleteItem(anel.key)">
           <i class="fas fa-trash"></i> Excluir</button>

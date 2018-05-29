@@ -45,6 +45,18 @@ import { ColaresComponent } from './produtos/lista-produtos/colares/colares.comp
 import { PingentesComponent } from './produtos/lista-produtos/pingentes/pingentes.component';
 import { PulseirasComponent } from './produtos/lista-produtos/pulseiras/pulseiras.component';
 import { AtualizaCategoriaComponent } from './categorias/atualiza-categoria/atualiza-categoria.component';
+import { ColecoesComponent } from './colecoes/colecoes.component';
+import { ListaColecoesComponent } from './colecoes/lista-colecoes/lista-colecoes.component';
+import { NovaColecaoComponent } from './colecoes/nova-colecao/nova-colecao.component';
+import { AtualizaColecaoComponent } from './colecoes/atualiza-colecao/atualiza-colecao.component';
+import { DeletarColecaoComponent } from './colecoes/deletar-colecao/deletar-colecao.component';
+import { TagDetalhesComponent } from './tag-detalhes/tag-detalhes.component';
+import { NovaTagDetalhesComponent } from './tag-detalhes/nova-tag-detalhes/nova-tag-detalhes.component';
+import { AtualizaTagDetalhesComponent } from './tag-detalhes/atualiza-tag-detalhes/atualiza-tag-detalhes.component';
+import { DeletarTagDetalhesComponent } from './tag-detalhes/deletar-tag-detalhes/deletar-tag-detalhes.component';
+import { ListaTagDetalhesComponent } from './tag-detalhes/lista-tag-detalhes/lista-tag-detalhes.component';
+import { EditarProdutoComponent } from './produtos/editar-produto/editar-produto.component';
+import { EditarAnelComponent } from './produtos/lista-produtos/aneis/editar-anel/editar-anel.component';
 
 
 // import { UploadService } from './uploads/shared/upload.service';
@@ -75,6 +87,18 @@ import { AtualizaCategoriaComponent } from './categorias/atualiza-categoria/atua
     PingentesComponent,
     PulseirasComponent,
     AtualizaCategoriaComponent,
+    ColecoesComponent,
+    ListaColecoesComponent,
+    NovaColecaoComponent,
+    AtualizaColecaoComponent,
+    DeletarColecaoComponent,
+    TagDetalhesComponent,
+    NovaTagDetalhesComponent,
+    AtualizaTagDetalhesComponent,
+    DeletarTagDetalhesComponent,
+    ListaTagDetalhesComponent,
+    EditarProdutoComponent,
+    EditarAnelComponent,
   ],
   imports: [
     BrowserModule,

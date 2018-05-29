@@ -1,0 +1,75 @@
+
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="#">Home</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Coleções</li>
+    </ol>
+  </nav>
+  <div class="jumbotron">
+    <div class="actions">
+      <!-- <button class="btn btn-success" routerLink="nova-categoria">Novo categoria</button> -->
+      <button class="btn btn-primary" data-toggle="modal" data-target="#novaColecao">
+        <i class="fas fa-plus-circle"></i> Nova Coleção</button>
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <td>NOME</td>
+          <td>CRIADO POR</td>
+          <td>DATA</td>
+          <td>STATUS</td>
+          <td width="200">AÇÃO</td>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let colecao of lista_colecoes ">
+          <td>{{ colecao.title }}</td>
+          <td>{{ colecao.author }}</td>
+          <td>{{ colecao.createdAt | date: 'dd/MM/yyyy - HH:mm'}}</td>
+          <td *ngIf="colecao.disabled == true;">Inativo</td>
+          <td *ngIf="colecao.disabled == false;">Ativo</td>
+          <td>
+            <button class="btn btn-primary" (click)="selectCollection(colecao.key, colecao.title, colecao.disabled)" data-toggle="modal" data-target="#atualizaColecao">
+              <i class="fas fa-edit"></i> Editar</button>
+            <button class="btn btn-danger" (click)="selectCollection(colecao.key)" data-toggle="modal" data-target="#delete">
+                <i class="fas fa-minus-circle"></i> Excluir</button>
+          </td>
+        </tr>
+
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>NOME</td>
+          <td>CRIADO POR</td>
+          <td>DATA</td>
+          <td>STATUS</td>
+          <td width="200">AÇÃO</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+      <app-deletar-colecao [keyCollection]='keyCollection'></app-deletar-colecao>
+    </div>
+  </div>
+
+<!-- Modal Nova Coleção -->
+<div class="modal fade" id="novaColecao" tabindex="-1" role="dialog" aria-labelledby="novaColecao" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <app-nova-colecao></app-nova-colecao>
+  </div>
+</div>
+<!-- Modal Atualiza Coleção -->
+<div class="modal fade" id="atualizaColecao" tabindex="-1" role="dialog" aria-labelledby="biblioteca" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <app-atualiza-colecao [keyCollection]='keyCollection' [title]='title' [disabledInput]='disabledInput'></app-atualiza-colecao>
+  </div>
+</div>
