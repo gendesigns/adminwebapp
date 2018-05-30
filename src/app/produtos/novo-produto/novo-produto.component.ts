@@ -36,13 +36,13 @@ export class NovoProdutoComponent implements OnInit {
   public category: string
   public family: string
   public collection: string
-  public tagsDetails: Array<any> = []
   public image1: string
   public image2: string
   public image3: string
   public disabledProduct: boolean
   public author: string
   public createdAt
+  public tagsDetails: Array<any> = []
   public lista_colecoes = new Array<any>();
   public lista_detalhes = new Array<any>();
 
@@ -51,33 +51,6 @@ export class NovoProdutoComponent implements OnInit {
   public get_image3: string
   public uploads
   public items
-
-  public selectedCompanyCustomPromise: any
-  public loading = false;
-  public tagsNames: Array<any> = [
-    'Ajustável',
-    'Aplicação de Rhodium',
-    'Cristal',
-    'Cristais',
-    'Cordão',
-    'Choker',
-    'Ear jacket',
-    'Ear cuff',
-    'Ear hook',
-    'Escapulario',
-    'Gargantilha',
-    'Gargantilha com Pingente',
-    'Gravata',
-    'Pedra Verde',
-    'Pedra Preta',
-    'Pedra Nude',
-    'Pérola',
-    'Religioso',
-    'Piercing',
-    'Perolas Sintéticas',
-    'Zircônia',
-    'Zircônias',
-  ]
   
   // Models
   public imgContent
@@ -105,12 +78,12 @@ export class NovoProdutoComponent implements OnInit {
       private colecoesService: ColecoesService,
       private tagDetalhesService: TagDetalhesService,
       private dataService: TagDetalhesService
-  ) { }
+  ) {
+      this.tagDetalhesService.getTagDetalhes().subscribe( tag => {
+        this.lista_detalhes = tag
+      })
+   }
  
-  addTag(name) {
-      return { name: name, tag: true };
-  }
-
   ngOnInit() {
 
     // GET Collections
@@ -127,11 +100,6 @@ export class NovoProdutoComponent implements OnInit {
       this.author = user.email
     })
     // GET User
-
-    // this.tagsNames2.forEach((c, i) => {
-    //   this.tags.push({ id: i, name: c });
-    // });
-    // console.log(this.tags)
 
     $(document).on('click', '.image', function () {
       var data_box = $(this).attr('data-box');
@@ -181,6 +149,7 @@ export class NovoProdutoComponent implements OnInit {
       this.author = this.author,
       this.createdAt
     )
+    
     this.db.saveProductFb(product)
     this.resetForm()
     

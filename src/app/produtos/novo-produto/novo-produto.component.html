@@ -34,7 +34,7 @@
         <div class="form-group">
           <label>Categoria</label>
           <select class="custom-select" formControlName="category" required>
-            <option selected>Selecione a categoria</option>
+            <option selected></option>
             <option value="Anéis">Anéis</option>
             <option value="Brincos">Brincos</option>
             <option value="Colares">Colares</option>
@@ -45,7 +45,7 @@
         <div class="form-group">
           <label>Familia</label>
           <select class="custom-select" formControlName="family" required>
-            <option selected>Selecione a familia</option>
+            <option selected></option>
             <option value="Folheado a Ouro Amarelo 18k">Folheado a Ouro 18k</option>
             <option value="Folheado a Rhodium">Folheado a Rhodium</option>
             <option value="Prata">Prata</option>
@@ -55,6 +55,7 @@
         <div class="form-group">
           <label>Coleção</label>
           <select class="custom-select" formControlName="collection" required>
+            <option selected="selected"></option>
             <option *ngFor="let colecao of lista_colecoes" value="{{ colecao.title }}">{{ colecao.title }}</option>
           </select>
         </div>
@@ -62,13 +63,14 @@
           <label>Detalhes</label>
           
           <ng-select
-              formControlName="tagsDetails"
-              [items]="tagsNames"
-              [addTag]="addTagPromise"
-              multiple="true"
-              bindLabel="name"
-              [loading]="loading"
-              [(ngModel)]="selectedCompanyCustomPromise" required>
+            formControlName="tagsDetails"
+            [items]="lista_detalhes"
+            bindLabel="title"
+            bindValue="title"
+            multiple="true"
+            [closeOnSelect]="false"
+            [hideSelected]="true"
+          >
           </ng-select>
 
         </div>

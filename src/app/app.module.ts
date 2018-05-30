@@ -4,8 +4,8 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { FormsModule } from '@angular/forms';
 
 import { NgSelectModule } from '@ng-select/ng-select';
-import {NgxPaginationModule} from 'ngx-pagination'; 
-import {NgPipesModule} from 'ngx-pipes';
+import { NgxPaginationModule } from 'ngx-pagination'; 
+import { NgPipesModule } from 'ngx-pipes';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import { AngularFireModule } from 'angularfire2';
