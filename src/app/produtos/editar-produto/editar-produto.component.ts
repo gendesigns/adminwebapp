@@ -34,6 +34,8 @@ declare let $: any
 })
 export class EditarProdutoComponent implements OnInit {
 
+  public p
+
   public ref: string
   public category: string
   public family: string
