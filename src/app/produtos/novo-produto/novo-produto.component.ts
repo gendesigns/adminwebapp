@@ -63,7 +63,7 @@ export class NovoProdutoComponent implements OnInit {
     {title:"Pulseiras"},
   ]
 
-
+  public p
   public get_image1: string
   public get_image2: string
   public get_image3: string

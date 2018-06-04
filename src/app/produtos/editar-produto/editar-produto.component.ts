@@ -132,7 +132,10 @@ export class EditarProdutoComponent implements OnInit {
         }else{
           this.formulario.patchValue({status: this.defaultStatus})
         }
-        this.getProduto = produto[this.id]
+        this.image1 = produto[this.id].image1
+        this.image2 = produto[this.id].image2
+        this.image3 = produto[this.id].image3
+
       })
     })
     
@@ -203,20 +206,20 @@ export class EditarProdutoComponent implements OnInit {
       this.family = this.formulario.value.family,
       this.collection = this.formulario.value.collection,
       this.tagsDetails =  this.formulario.value.tagsDetails,
-      this.image1 = this.formulario.value.image1, 
+      this.image1 = this.get_image1, 
       this.image2 = this.get_image2, 
       this.image3 = this.get_image3, 
       this.status = this.formulario.value.status,
       this.author = this.author,
       this.createdAt = this.createdAt
     )
-
-    this.produtosService.updateProduto(this.id, product)
-    .then(()=>{ 
-      console.log('Key: ', this.id)
-      console.log('Produto: ', product)
-      console.log('Produto atualizado com sucesso!')
-    })
+    console.log(product)
+    // this.produtosService.updateProduto(this.id, product)
+    // .then(()=>{ 
+    //   console.log('Key: ', this.id)
+    //   console.log('Produto: ', product)
+    //   console.log('Produto atualizado com sucesso!')
+    // })
     
   }
 

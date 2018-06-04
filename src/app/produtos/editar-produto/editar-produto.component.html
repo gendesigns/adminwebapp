@@ -98,8 +98,8 @@
               formControlName="image3">
             
               <div class="image" data-toggle="modal" data-target="#biblioteca" data-box='1'>
-                <div *ngIf='getProduto.image1!=""; else elseBlock'>
-                  <img src="{{ getProduto.image1 }}" style="margin-bottom: 0;">
+                <div *ngIf='image1!=""; else elseBlock'>
+                  <img src="{{ image1 }}" style="margin-bottom: 0;">
                 </div>
                 <ng-template #elseBlock>
                     <a class="btn btn-success">
@@ -108,8 +108,8 @@
                 </ng-template>
               </div>
               <div class="image" data-toggle="modal" data-target="#biblioteca" data-box='2'>
-                  <div *ngIf='getProduto.image2 != ""; else elseBlock'>
-                    <img src="{{ getProduto.image2 }}" style="margin-bottom: 0;">
+                  <div *ngIf='image2 != ""; else elseBlock'>
+                    <img src="{{ image2 }}" style="margin-bottom: 0;">
                   </div>
                   <ng-template #elseBlock>
                       <a class="btn btn-success">
@@ -118,8 +118,8 @@
                   </ng-template>
               </div>
               <div class="image" data-toggle="modal" data-target="#biblioteca" data-box='3'>
-                  <div *ngIf='getProduto.image3 != ""; else elseBlock'>
-                    <img src="{{ getProduto.image3 }}" style="margin-bottom: 0;">
+                  <div *ngIf='image3 != ""; else elseBlock'>
+                    <img src="{{ image3 }}" style="margin-bottom: 0;">
                   </div>
                   <ng-template #elseBlock>
                       <a class="btn btn-success">
