@@ -22,7 +22,9 @@
         <td>{{ brinco.family }}</td>
         
         <td>
-          <button class="btn btn-primary">
+          <button class="btn btn-primary"
+            routerLink="/produtos/editar-produto/" 
+            [queryParams]="{ pagina: brinco.category, id: brinco.key }">
             <i class="fas fa-reply"></i> Editar</button>
           <button class="btn btn-danger" (click)="deleteItem(brinco.key)">
             <i class="fas fa-trash"></i> Excluir</button>

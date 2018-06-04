@@ -27,7 +27,6 @@ export class ProdutosService {
   }
   updateProduto(key, produto): Promise<any>{
     return this.db.list(`produtos/${produto.category}`).set(key, produto)
-    .then(res => {})
   }
   deleteProduto(key: string) {    
     return this.db.list('produtos').remove(key)

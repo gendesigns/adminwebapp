@@ -187,16 +187,9 @@
 </div>
 
 <!-- Modal Editado com sucesso! -->
-<div class="modal fade" id="sucesso" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
-    <div class="modal-content">
-        <div class="modal-body">
-          <h5>Produto editado com sucesso!</h5>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
-        </div>
-      </div>
+<div class="modal fade" id="modalRetorno" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+      <app-modal-retorno [tituloRetorno]='tituloRetorno' [msgRetorno]='msgRetorno'></app-modal-retorno>
+    </div>
   </div>
-</div>
 <app-footer></app-footer>

@@ -21,7 +21,9 @@
       <td>{{ pingente.family }}</td>
       
       <td>
-        <button class="btn btn-primary">
+        <button class="btn btn-primary"
+          routerLink="/produtos/editar-produto/" 
+          [queryParams]="{ pagina: pingente.category, id: pingente.key }">
           <i class="fas fa-reply"></i> Editar</button>
         <button class="btn btn-danger" (click)="deleteItem(pingente.key)">
           <i class="fas fa-trash"></i> Excluir</button>

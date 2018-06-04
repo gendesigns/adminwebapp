@@ -67,17 +67,19 @@ export class EditarProdutoComponent implements OnInit {
     {title:"Pulseiras"},
   ]
 
+  public tituloRetorno: string
+  public msgRetorno: string
   public get_image1: string
   public get_image2: string
   public get_image3: string
   public uploads
   public items
   
+  
   // Models
   public term
   public updateImg
 
-  public getProduto = []
   public pagina:string
   public id: string
 
@@ -216,7 +218,9 @@ export class EditarProdutoComponent implements OnInit {
     
     this.produtosService.updateProduto(this.id, product)
     .then(()=>{ 
-      $('#sucesso').modal('show')
+      this.tituloRetorno = `Ref: ${product.ref}`
+      this.msgRetorno = "Atualizado com sucesso!"
+      $('#modalRetorno').modal('show')
     })
     
   }

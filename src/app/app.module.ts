@@ -56,6 +56,7 @@ import { AtualizaTagDetalhesComponent } from './tag-detalhes/atualiza-tag-detalh
 import { DeletarTagDetalhesComponent } from './tag-detalhes/deletar-tag-detalhes/deletar-tag-detalhes.component';
 import { ListaTagDetalhesComponent } from './tag-detalhes/lista-tag-detalhes/lista-tag-detalhes.component';
 import { EditarProdutoComponent } from './produtos/editar-produto/editar-produto.component';
+import { ModalRetornoComponent } from './produtos/modal-retorno/modal-retorno.component';
 
 
 // import { UploadService } from './uploads/shared/upload.service';
@@ -97,6 +98,7 @@ import { EditarProdutoComponent } from './produtos/editar-produto/editar-produto
     DeletarTagDetalhesComponent,
     ListaTagDetalhesComponent,
     EditarProdutoComponent,
+    ModalRetornoComponent,
   ],
   imports: [
     BrowserModule,
