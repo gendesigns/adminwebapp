@@ -54,7 +54,7 @@
               <i class="fas fa-search"></i>
             </button>
           </div>
-          <button class="btn btn-success float-sm-right mr-3" routerLink="novo-produto">Novo produto</button>
+          <button class="btn btn-success float-sm-left mr-3" routerLink="novo-produto">Novo produto</button>
         </div>
         <!-- TABLE BRINCOS -->
         <app-brincos [searchBrincos]='searchBrincos'></app-brincos>
@@ -65,12 +65,12 @@
       <div class="jumbotron">
         <div class="actions m-1">
           <div class="form-inline form-search float-sm-right">
-            <input type="search" class="form-control" placeholder="Buscar">
+            <input type="search" class="form-control" placeholder="Buscar" [(ngModel)]="searchColares">
             <button type="submit" class="mb-2">
               <i class="fas fa-search"></i>
             </button>
           </div>
-          <button class="btn btn-success float-sm-right mr-3" routerLink="novo-produto">Novo produto</button>
+          <button class="btn btn-success float-sm-left mr-3" routerLink="novo-produto">Novo produto</button>
         </div>
         <!-- TABLE COLARES -->
         <app-colares [searchColares]='searchColares'></app-colares>
@@ -81,12 +81,12 @@
       <div class="jumbotron">
         <div class="actions m-1">
           <div class="form-inline form-search float-sm-right">
-            <input type="search" class="form-control" placeholder="Buscar">
+            <input type="search" class="form-control" placeholder="Buscar" [(ngModel)]="searchPingentes">
             <button type="submit" class="mb-2">
               <i class="fas fa-search"></i>
             </button>
           </div>
-          <button class="btn btn-success float-sm-right mr-3" routerLink="novo-produto">Novo produto</button>
+          <button class="btn btn-success float-sm-left mr-3" routerLink="novo-produto">Novo produto</button>
         </div>
        <!-- TABLE PINGENTES -->
        <app-pingentes [searchPingentes]='searchPingentes'></app-pingentes>
@@ -97,12 +97,12 @@
       <div class="jumbotron">
         <div class="actions m-1">
           <div class="form-inline form-search float-sm-right">
-            <input type="search" class="form-control" placeholder="Buscar">
+            <input type="search" class="form-control" placeholder="Buscar" [(ngModel)]="searchPulseiras">
             <button type="submit" class="mb-2">
               <i class="fas fa-search"></i>
             </button>
           </div>
-          <button class="btn btn-success float-sm-right mr-3" routerLink="novo-produto">Novo produto</button>
+          <button class="btn btn-success float-sm-left mr-3" routerLink="novo-produto">Novo produto</button>
         </div>
         <!-- TABLE PULSEIRAS -->
         <app-pulseiras [searchPulseiras]='searchPulseiras'></app-pulseiras>

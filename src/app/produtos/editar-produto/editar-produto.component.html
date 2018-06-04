@@ -20,60 +20,63 @@
     </div> -->
     <div>
       <form [formGroup]="formulario" (ngSubmit)="saveProduct()">
-        <div>
-          <div >
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="disabledProduct" id="defaultCheck1" [checked]="saveUsername" (change)="isDisabledProduct()"
-                formControlName="disabledProduct">
-                
-              <label class="form-check-label" for="defaultCheck1">Inativo</label>
-            
+        <div class="col-md-2">
+          <div class="form-group">
+              <label>Status</label>
+              <ng-select
+                formControlName="status"
+                bindLabel="title"
+                bindValue="title"
+                [items]="lista_status"
+                [(ngModel)]="defaultStatus"
+                >
+              </ng-select>
             </div>
-          </div>
         </div>  
         <br />
         <div class="form-group">
           <label>Referência</label>
-          <input class="form-control" id="ref" type="text" value="" maxlength="6" placeholder="Referência do produto" formControlName="ref" required>
+          <input class="form-control" id="ref" type="text" maxlength="7" placeholder="Referência do produto" formControlName="ref">
         </div>
         <div class="form-group">
           <label>Categoria</label>
-          <select class="custom-select" formControlName="category" required>
-            <option selected>Selecione a categoria</option>
-            <option value="Anéis">Anéis</option>
-            <option value="Brincos">Brincos</option>
-            <option value="Colares">Colares</option>
-            <option value="Pingentes">Pingentes</option>
-            <option value="Pulseiras">Pulseiras</option>
-          </select>
+          <ng-select
+            formControlName="category"
+            [items]="lista_categorias"
+            bindLabel="title"
+            bindValue="title">
+          </ng-select>
         </div>
         <div class="form-group">
           <label>Familia</label>
-          <select class="custom-select" formControlName="family" required>
-            <option selected>Selecione a familia</option>
-            <option value="Folheado a Ouro Amarelo 18k">Folheado a Ouro 18k</option>
-            <option value="Folheado a Rhodium">Folheado a Rhodium</option>
-            <option value="Prata">Prata</option>
-            <option value="Pingentes">Aço</option>
-          </select>
+          <ng-select
+            formControlName="family"
+            [items]="lista_familias"
+            bindLabel="title"
+            bindValue="title">
+          </ng-select>
         </div>
         <div class="form-group">
           <label>Coleção</label>
-          <select class="custom-select" formControlName="collection" required>
-            <option *ngFor="let colecao of lista_colecoes" value="{{ colecao.title }}">{{ colecao.title }}</option>
-          </select>
+          <ng-select
+            formControlName="collection"
+            [items]="lista_colecoes"
+            bindLabel="title"
+            bindValue="title">
+          </ng-select>
+
         </div>
         <div class="form-group">
           <label>Detalhes</label>
           
           <ng-select
-              formControlName="tagsDetails"
-              [items]="tags"
-              [addTag]="addTagPromise"
-              multiple="true"
-              bindLabel="name"
-              [loading]="loading"
-              [(ngModel)]="selectedCompanyCustomPromise" required>
+            formControlName="tagsDetails"
+            [items]="lista_detalhes"
+            bindLabel="title"
+            bindValue="title"
+            multiple="true"
+            [closeOnSelect]="false"
+            [hideSelected]="true">
           </ng-select>
 
         </div>
@@ -82,30 +85,52 @@
             <p>Adicione até 3 imagens do produto</p>
           </div>
           <div class="form-group w-100 float-left form-group-images">
-            <input id="image1" class="form-control getImage" [(ngModel)]="imgContent" (change)="updateImg($event)" type="text" formControlName="image1"
-              required>
-            <input id="image2" class="form-control getImage" [(ngModel)]="imgContent" (change)="updateImg($event)" type="text" formControlName="image2"
-              required>
-            <input id="image3" class="form-control getImage" [(ngModel)]="imgContent" (change)="updateImg($event)" type="text" formControlName="image3"
-              required>
-            <div class="image" data-toggle="modal" data-target="#biblioteca" data-box='1'>
-              <a class="btn btn-success">
-                <i class="fas fa-plus"></i>
-              </a>
-            </div>
-            <div class="image" data-toggle="modal" data-target="#biblioteca" data-box='2'>
-              <a class="btn btn-success">
-                <i class="fas fa-plus"></i>
-              </a>
-            </div>
-            <div class="image" data-toggle="modal" data-target="#biblioteca" data-box='3'>
-              <a class="btn btn-success">
-                <i class="fas fa-plus"></i>
-              </a>
-            </div>
+            <input id="image1" class="form-control getImage" type="text" 
+              (change)="updateImg($event)" 
+              formControlName="image1">
+
+            <input id="image2" class="form-control getImage" type="text" 
+              (change)="updateImg($event)" 
+              formControlName="image2">
+
+            <input id="image3" class="form-control getImage" type="text" 
+              (change)="updateImg($event)" 
+              formControlName="image3">
+            
+              <div class="image" data-toggle="modal" data-target="#biblioteca" data-box='1'>
+                <div *ngIf='getProduto.image1!=""; else elseBlock'>
+                  <img src="{{ getProduto.image1 }}" style="margin-bottom: 0;">
+                </div>
+                <ng-template #elseBlock>
+                    <a class="btn btn-success">
+                      <i class="fas fa-plus"></i>
+                    </a>
+                </ng-template>
+              </div>
+              <div class="image" data-toggle="modal" data-target="#biblioteca" data-box='2'>
+                  <div *ngIf='getProduto.image2 != ""; else elseBlock'>
+                    <img src="{{ getProduto.image2 }}" style="margin-bottom: 0;">
+                  </div>
+                  <ng-template #elseBlock>
+                      <a class="btn btn-success">
+                        <i class="fas fa-plus"></i>
+                      </a>
+                  </ng-template>
+              </div>
+              <div class="image" data-toggle="modal" data-target="#biblioteca" data-box='3'>
+                  <div *ngIf='getProduto.image3 != ""; else elseBlock'>
+                    <img src="{{ getProduto.image3 }}" style="margin-bottom: 0;">
+                  </div>
+                  <ng-template #elseBlock>
+                      <a class="btn btn-success">
+                        <i class="fas fa-plus"></i>
+                      </a>
+                  </ng-template>
+              </div>
+            
           </div>
         </div>
-        <div class="form-group">
+        <div class="form-group d-flex justify-content-end">
           <button class="btn btn-secondary" type="button" routerLink="/produtos">Cancelar</button>
           <button class="btn btn-success" type="submit">Salvar</button>
         </div>
@@ -118,37 +143,44 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Biblioteca de imagens</h5>
+        <div class="col-md-6" >
+          <h5 class="modal-title" id="exampleModalLabel">Biblioteca de imagens</h5>
+        </div>
+        <div class="col-md-4" >
+          <div class="input-group form-search my-2">
+            <input type="search" class="form-control" placeholder="Buscar" [(ngModel)]="term">
+            <button type="submit" style="top: 0">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-       <!--  <div class="form-inline form-search">
-          <input type="search" class="form-control" placeholder="Buscar" [(ngModel)]="term">
-          <button type="submit" class="mb-2">
-            <i class="fas fa-search"></i>
-          </button>
-        </div> -->
-        <div class="input-group form-search my-2">
-          <input type="search" class="form-control" placeholder="Buscar" [(ngModel)]="term">
-          <button type="submit" style="top: 0">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
         <input type="hidden" id="data-box" value="0">
         <div class="row">
-          <div class="col-md-2" *ngFor="let image of items | filter:term">
-            <label for="{{image.name}}">
-              <input type="radio" name="img" id="{{image.name}}">
-              <img src="{{image.url}}" />
-            </label>
-          </div>
+            <div class="col-md-2" *ngFor="let image of items | filter:term | paginate: { itemsPerPage: 20, currentPage: p, id:'p'}">
+              <label for="{{image.name}}">
+                <input type="radio" name="img" id="{{image.name}}">
+                <img src="{{image.url}}" />
+              </label>
+            </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary btn-save">Adicionar</button>
+        <div class="col-md-8" >
+          <nav>
+            <pagination-controls class="pagination" (pageChange)="p = $event" id="p" maxSize="5" directionLinks="true" autoHide="true"
+              previousLabel="Anterior" nextLabel="Próxima" screenReaderPaginationLabel="Paginação" screenReaderPageLabel="página" screenReaderCurrentLabel="Você está na página">
+            </pagination-controls>
+          </nav>
+        </div>
+        <div class="col-md-4" >
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary btn-save">Adicionar</button>
+        </div>
       </div>
     </div>
   </div>

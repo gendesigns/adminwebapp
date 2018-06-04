@@ -7,6 +7,7 @@
       <td>COLEÇÃO</td>
       <td>DETALHES</td>
       <td>FAMILIA</td>
+      <td>STATUS</td>
       <td width="200">AÇÃO</td>
     </tr>
   </thead>
@@ -19,15 +20,17 @@
       <td>{{ colar.collection }}</td>
       <td><span *ngFor="let tag of colar.tagsDetails">{{ tag }}</span></td>
       <td>{{ colar.family }}</td>
-      
+      <td>{{ colar.status }}</td>
       <td>
-        <button class="btn btn-primary">
+        <button class="btn btn-primary"
+        routerLink="/produtos/editar-produto/" 
+        [queryParams]="{ pagina: colar.category, id: colar.key }">
           <i class="fas fa-reply"></i> Editar</button>
+      
         <button class="btn btn-danger" (click)="deleteItem(colar.key)">
           <i class="fas fa-trash"></i> Excluir</button>
       </td>
     </tr>
-    
   </tbody>
   <tfoot>
     <tr>

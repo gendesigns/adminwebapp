@@ -17,6 +17,7 @@ export class ColaresComponent {
 
   public pColares
 
+  public defaultStatus = 'Ativo'
   public itemsRef: AngularFireList<any>;
   public colares: Observable<any[]>;
   

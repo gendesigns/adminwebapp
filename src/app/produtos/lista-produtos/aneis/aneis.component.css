@@ -8,3 +8,8 @@ td span{
     font-size: 11px;
     color: #fff;
 }
+.viewport {
+    height: 300px;
+    overflow-y: auto;
+    overflow-anchor: none;
+}

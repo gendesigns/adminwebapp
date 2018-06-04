@@ -1,9 +1,12 @@
-import { Component, OnInit, NgModule } from '@angular/core';
+import { Component, OnInit, NgModule, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 import { Produto } from '../novo-produto/produto.model';
 
-import { ProdutosService } from '../../produtos/produtos.services';
+import { ProdutosService } from '../produtos.services';
+import { TagDetalhesService } from '../../tag-detalhes/tag-detalhes.service';
 import { ColecoesService } from '../../colecoes/colecoes.service';
 import { UploadService } from '../../uploads/shared/upload.service';
 import { Upload } from '../../uploads/shared/upload';
@@ -16,6 +19,9 @@ import { Bd } from '../../bd.service';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/Rx';
+import { TagDetalhes } from '../../tag-detalhes/tag-detalhes.model';
+
 
 declare let jQuery: any;
 declare let $: any
@@ -24,125 +30,140 @@ declare let $: any
   selector: 'app-editar-produto',
   templateUrl: './editar-produto.component.html',
   styleUrls: ['./editar-produto.component.css'],
-  providers: [ ProdutosService, ColecoesService ]
+  providers: [ ProdutosService ,ColecoesService, TagDetalhesService ]
 })
 export class EditarProdutoComponent implements OnInit {
 
-  public saveUsername: boolean = false;
   public ref: string
   public category: string
   public family: string
   public collection: string
-  public tagsDetails: Array<any> = []
   public image1: string
   public image2: string
   public image3: string
-  public disabledProduct: boolean
   public author: string
+  public status: string
   public createdAt
-  
+  public tagsDetails: Array<any> = []
+  public produtos = new Array<any>();
   public lista_produtos = new Array<any>();
   public lista_colecoes = new Array<any>();
+  public lista_detalhes = new Array<any>();
+  public defaultStatus = 'Ativo'
+  public lista_status = ['Ativo', 'Inativo']
+  public lista_familias = [
+      {title:"Folheado a Ouro Amarelo 18k"},
+      {title:"Folheado a Rhodium"},
+      {title:"Prata"},
+      {title:"Aço"}
+    ]
+  public lista_categorias = [
+    {title:"Anéis"},
+    {title:"Brincos"},
+    {title:"Colares"},
+    {title:"Pingentes"},
+    {title:"Pulseiras"},
+  ]
 
   public get_image1: string
   public get_image2: string
   public get_image3: string
   public uploads
   public items
-
-  public keyProduto: any
   
   // Models
-  public imgContent
   public term
   public updateImg
-  public addTagPromise
+
+  public getProduto = []
+  public pagina:string
+  public id: string
 
   public formulario: FormGroup = new FormGroup({
-    'ref': new FormControl('', Validators.required),
-    'category': new FormControl('', Validators.required),
-    'family': new FormControl('', Validators.required),
-    'collection': new FormControl('', Validators.required),
+    'ref': new FormControl(null),
+    'category': new FormControl(null),
+    'family': new FormControl(null),
+    'collection': new FormControl(null),
     'tagsDetails': new FormControl(null),
-    'image1': new FormControl('', Validators.required),
-    'image2': new FormControl('', Validators.required),
-    'image3': new FormControl('', Validators.required),
-    'disabledProduct': new FormControl('', Validators.required),
-    'author': new FormControl('', Validators.required)
+    'image1': new FormControl(null),
+    'image2': new FormControl(null),
+    'image3': new FormControl(null),
+    'status': new FormControl(null),
   })
 
   constructor( 
+      private route:ActivatedRoute,
       private auth:Auth, 
       private upSvc: UploadService, 
       private db:Bd,
       private produtosService: ProdutosService,
       private colecoesService: ColecoesService,
-      private route: ActivatedRoute
-  ) { 
-      this.route.params.subscribe(res => {
-          this.keyProduto = res.id
-        // console.log(res.id)
-      });
-    }
-  
-  selectedCompanyCustomPromise: any
-  tags: any[] = [];
-  loading = false;
-  tagsNames = [
-    'Zircônia',
-    'Zircônias',
-    'Cristal',
-    'Cristais',
-    'Pedra Verde',
-    'Pedra Preta',
-    'Anel ajustável',
-    'Ear Jacket',
-    'Ear Cuff',
-    'Piercing',
-    'Aplicação de Rhodium Negro',
-    'Pedra Nude',
-    'Ajustável',
-    'Gargantilha',
-    'Gargantilha com Pingente',
-    'Gravata',
-    'Perolas Sintéticas',
-    'Escapulario',
-    'Cordão',
-    'Choker'
-  ];
-
-  addTag(name) {
-      return { name: name, tag: true };
-  }
-
+      private tagDetalhesService: TagDetalhesService,
+  ) {
+      
+      this.route.queryParams.subscribe(param => {
+        this.pagina = param.pagina
+        this.id = param.id
+      })
+   }
+ 
   ngOnInit() {
+    // GET Product
+    this.produtosService.getProdutos().subscribe( products => {
+      this.lista_produtos = products
+      this.lista_produtos.forEach( (product) => {
+        if(product.key == this.pagina){
+          this.produtos.push(product)
+        }
+      })
+      this.produtos.forEach( produto => {
+        this.formulario.patchValue({ref: produto[this.id].ref})
+        this.formulario.patchValue({category: produto[this.id].category})
+        this.formulario.patchValue({family: produto[this.id].family})
+        this.formulario.patchValue({collection: produto[this.id].collection})
+        this.formulario.patchValue({tagsDetails: produto[this.id].tagsDetails})
+        this.formulario.patchValue({image1: produto[this.id].image1})
+        this.formulario.patchValue({image2: produto[this.id].image2})
+        this.formulario.patchValue({image3: produto[this.id].image3})
+        if(produto[this.id].status!=undefined){
+          this.formulario.patchValue({status: produto[this.id].status})
+        }else{
+          this.formulario.patchValue({status: this.defaultStatus})
+        }
+        this.getProduto = produto[this.id]
+      })
+    })
+    
+    // GET Categories
+    // this.tagDetalhesService.getTagDetalhes().subscribe( tag => {
+    //   this.lista_detalhes = tag
+    // })
+    // GET Categories
 
-    // GET Produtos
-    this.produtosService.getProdutos()
-      .subscribe(data => {
-        this.lista_produtos = data
-        console.log(this.lista_produtos[0])
-      }, error => { console.log(error) }
-    )
-    // GET Produtos
+    // GET TagsDetalhes
+    this.tagDetalhesService.getTagDetalhes().subscribe( tag => {
+      this.lista_detalhes = tag
+    })
+    // GET TagsDetalhes
 
     // GET Collections
-    this.colecoesService.getCollections()
-      .subscribe(data => {
-        this.lista_colecoes = data
-      }, error => { console.log(error) }
-    )
+    this.colecoesService.getCollections().subscribe( collection => {
+        this.lista_colecoes = collection
+      })
     // GET Collections
 
     // GET User
     firebase.auth().onAuthStateChanged((user) => {
       this.author = user.email
     })
-
-    this.tagsNames.forEach((c, i) => {
-        this.tags.push({ id: i, name: c });
-    });
     // GET User
+
+    // GET Upload
+    this.uploads = this.upSvc.getUploads();
+    this.uploads.subscribe((result) => {
+      this.items = result
+    });
+    // GET Upload
 
     $(document).on('click', '.image', function () {
       var data_box = $(this).attr('data-box');
@@ -157,11 +178,6 @@ export class EditarProdutoComponent implements OnInit {
       }
     })
 
-    this.uploads = this.upSvc.getUploads();
-    this.uploads.subscribe((result) => {
-      this.items = result
-    });
-    
     $(document).on('click', '.btn-save', function () {
       var data_box = $('#biblioteca #data-box').val();
       var img = $("input[name=img]:checked + img").attr('src');
@@ -185,31 +201,21 @@ export class EditarProdutoComponent implements OnInit {
       this.family = this.formulario.value.family,
       this.collection = this.formulario.value.collection,
       this.tagsDetails =  this.formulario.value.tagsDetails,
-      this.image1 = this.get_image1, 
+      this.image1 = this.formulario.value.image1, 
       this.image2 = this.get_image2, 
       this.image3 = this.get_image3, 
-      this.disabledProduct = this.saveUsername,
+      this.status = this.formulario.value.status,
       this.author = this.author,
-      this.createdAt
+      this.createdAt = this.createdAt
     )
-    this.produtosService.updateProduto(this.keyProduto, product)
-    // this.db.saveProductFb(product)
-    this.resetForm()
+
+    this.produtosService.updateProduto(this.id, product)
+    .then(()=>{ 
+      console.log('Key: ', this.id)
+      console.log('Produto: ', product)
+      console.log('Produto atualizado com sucesso!')
+    })
     
-  }
-
-  public resetForm():void {
-    this.formulario.reset() 
-    $( "#ref" ).focus();
-    $('.image').html('<a class="btn btn-success" style="width:25px;height:25px; padding:0"><i class="fas fa-plus"></i></a>');
-  }
-
-  public isDisabledProduct():void {
-    if( this.saveUsername  == false ){
-      this.saveUsername = true
-    }else if( this.saveUsername  == true ){
-      this.saveUsername = false 
-    }
   }
 
 }

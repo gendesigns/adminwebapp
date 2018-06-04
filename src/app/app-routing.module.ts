@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'add-notificacao', component: EnviaNotificacoesComponent, canActivate: [ AuthGuard ] },
   { path: 'produtos', component: ListaProdutosComponent, canActivate: [ AuthGuard ] },
   { path: 'produtos/novo-produto', component: NovoProdutoComponent, canActivate: [ AuthGuard ] },
-  { path: 'produtos/editar-produto/:id', component: EditarProdutoComponent, canActivate: [ AuthGuard ] },
+  { path: 'produtos/editar-produto', component: EditarProdutoComponent, canActivate: [ AuthGuard ] },
   { path: 'categorias', component: ListaCategoriasComponent, canActivate: [ AuthGuard ] },
   { path: 'categorias/nova-categoria', component: NovaCategoriaComponent, canActivate: [ AuthGuard ] },
   { path: 'usuarios', component: ListaUsuariosComponent, canActivate: [ AuthGuard ] },  

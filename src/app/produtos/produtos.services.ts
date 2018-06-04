@@ -13,28 +13,25 @@ export class ProdutosService {
   public produtosRef: AngularFireList<any>;
   public produtos: Observable<any[]>;
   
-  constructor(private db: AngularFireDatabase) { 
+  constructor(private db: AngularFireDatabase) { }
 
-    this.produtosRef = db.list('produtos');
-    this.produtos = this.produtosRef.snapshotChanges().map(changes => {
+  getProdutos(): Observable<any>{
+    this.produtosRef = this.db.list('produtos');
+    return this.produtos = this.produtosRef.snapshotChanges().map(changes => {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
     });
   }
-
-  getProdutos(): Observable<any>{
-    return this.produtos
-  }
   saveProduto(produto) {
-    this.produtosRef.push(produto)
+    this.db.list(`produtos/${produto.category}`).push(produto)
     .then(res => {})
   }
-  updateProduto(key, produto) {
-    this.produtosRef.update(key, produto)
-    .then(()=>{})
+  updateProduto(key, produto): Promise<any>{
+    return this.db.list(`produtos/${produto.category}`).set(key, produto)
+    .then(res => {})
   }
   deleteProduto(key: string) {    
-    this.produtosRef.remove(key)
-  .then(res =>{})
+    return this.db.list('produtos').remove(key)
+    .then(res => {})
   }
 
 }

@@ -11,13 +11,14 @@ import { Upload } from '../../uploads/shared/upload';
 import { AngularFireDatabaseModule, AngularFireList, AngularFireDatabase } from 'angularfire2/database';
 import * as firebase from 'firebase'
 import { Auth } from '../../auth.service';
-import { Bd } from '../../bd.service';
+import { ProdutosService } from '../produtos.services';
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import { TagDetalhes } from '../../tag-detalhes/tag-detalhes.model';
+
 
 
 declare let jQuery: any;
@@ -27,11 +28,10 @@ declare let $: any
   selector: 'app-novo-produto',
   templateUrl: './novo-produto.component.html',
   styleUrls: ['./novo-produto.component.css'],
-  providers: [ ColecoesService, TagDetalhesService ]
+  providers: [ ProdutosService, ColecoesService, TagDetalhesService ]
 })
 export class NovoProdutoComponent implements OnInit {
 
-  public saveUsername: boolean = false;
   public ref: string
   public category: string
   public family: string
@@ -39,12 +39,30 @@ export class NovoProdutoComponent implements OnInit {
   public image1: string
   public image2: string
   public image3: string
-  public disabledProduct: boolean
   public author: string
+  public status: string
   public createdAt
   public tagsDetails: Array<any> = []
+  public produtos = new Array<any>();
+  public lista_produtos = new Array<any>();
   public lista_colecoes = new Array<any>();
   public lista_detalhes = new Array<any>();
+  public defaultStatus = 'Ativo'
+  public lista_status = ['Ativo', 'Inativo']
+  public lista_familias = [
+      {title:"Folheado a Ouro Amarelo 18k"},
+      {title:"Folheado a Rhodium"},
+      {title:"Prata"},
+      {title:"Aço"}
+    ]
+  public lista_categorias = [
+    {title:"Anéis"},
+    {title:"Brincos"},
+    {title:"Colares"},
+    {title:"Pingentes"},
+    {title:"Pulseiras"},
+  ]
+
 
   public get_image1: string
   public get_image2: string
@@ -59,22 +77,22 @@ export class NovoProdutoComponent implements OnInit {
   public addTagPromise
 
   public formulario: FormGroup = new FormGroup({
-    'ref': new FormControl('', Validators.required),
-    'category': new FormControl('', Validators.required),
-    'family': new FormControl('', Validators.required),
-    'collection': new FormControl('', Validators.required),
+    'ref': new FormControl(null),
+    'category': new FormControl(null),
+    'family': new FormControl(null),
+    'collection': new FormControl(null),
     'tagsDetails': new FormControl(null),
-    'image1': new FormControl('', Validators.required),
-    'image2': new FormControl('', Validators.required),
-    'image3': new FormControl('', Validators.required),
-    'disabledProduct': new FormControl('', Validators.required),
-    'author': new FormControl('', Validators.required)
+    'image1': new FormControl(null),
+    'image2': new FormControl(null),
+    'image3': new FormControl(null),
+    'status': new FormControl(null),
+    'author': new FormControl(null)
   })
 
   constructor( 
       private auth:Auth, 
       private upSvc: UploadService, 
-      private db:Bd,
+      private produtoService:ProdutosService,
       private colecoesService: ColecoesService,
       private tagDetalhesService: TagDetalhesService,
       private dataService: TagDetalhesService
@@ -145,12 +163,12 @@ export class NovoProdutoComponent implements OnInit {
       this.image1 = this.get_image1, 
       this.image2 = this.get_image2, 
       this.image3 = this.get_image3, 
-      this.disabledProduct = this.saveUsername,
+      this.status = this.formulario.value.status,
       this.author = this.author,
-      this.createdAt
+      this.createdAt = this.createdAt
     )
-    
-    this.db.saveProductFb(product)
+    console.log(product)
+    this.produtoService.saveProduto(product)
     this.resetForm()
     
   }
@@ -159,14 +177,6 @@ export class NovoProdutoComponent implements OnInit {
     this.formulario.reset() 
     $( "#ref" ).focus();
     $('.image').html('<a class="btn btn-success" style="width:25px;height:25px; padding:0"><i class="fas fa-plus"></i></a>');
-  }
-
-  public isDisabledProduct():void {
-    if( this.saveUsername  == false ){
-      this.saveUsername = true
-    }else if( this.saveUsername  == true ){
-      this.saveUsername = false 
-    }
   }
 
 }

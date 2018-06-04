@@ -8,8 +8,8 @@ export class Produto {
         public image1: any,
         public image2: any,
         public image3: any,
-        public disabledProduct: boolean,
+        public status: string,
         public author: string,
-        public createdAt: string
+        public createdAt: any
     ) {}
 }
