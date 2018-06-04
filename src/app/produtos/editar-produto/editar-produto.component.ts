@@ -213,13 +213,11 @@ export class EditarProdutoComponent implements OnInit {
       this.author = this.author,
       this.createdAt = this.createdAt
     )
-    console.log(product)
-    // this.produtosService.updateProduto(this.id, product)
-    // .then(()=>{ 
-    //   console.log('Key: ', this.id)
-    //   console.log('Produto: ', product)
-    //   console.log('Produto atualizado com sucesso!')
-    // })
+    
+    this.produtosService.updateProduto(this.id, product)
+    .then(()=>{ 
+      $('#sucesso').modal('show')
+    })
     
   }
 
