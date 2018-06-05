@@ -216,7 +216,7 @@ export class EditarProdutoComponent implements OnInit {
       this.createdAt = this.createdAt
     )
     
-    this.produtosService.updateProduto(this.id, product)
+    this.produtosService.updateProduto(product.category, this.id, product)
     .then(()=>{ 
       this.tituloRetorno = `Ref: ${product.ref}`
       this.msgRetorno = "Atualizado com sucesso!"
