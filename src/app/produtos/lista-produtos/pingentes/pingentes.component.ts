@@ -17,6 +17,9 @@ export class PingentesComponent {
 
   public pPingentes
 
+  public selectedItem: string
+  public itemTitle: string
+
   public itemsRef: AngularFireList<any>;
   public pingentes: Observable<any[]>;
   
@@ -27,6 +30,11 @@ export class PingentesComponent {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
     });
     
+  }
+
+  selectItem(key:string, title:string){
+    this.selectedItem = key
+    this.itemTitle = title
   }
 
   addItem(newName: string) {

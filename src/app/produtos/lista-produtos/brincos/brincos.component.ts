@@ -16,6 +16,9 @@ export class BrincosComponent {
 
   public pBrincos
 
+  public selectedItem: string
+  public itemTitle: string
+
   public itemsRef: AngularFireList<any>;
   public brincos: Observable<any[]>;
   
@@ -27,6 +30,11 @@ export class BrincosComponent {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
     });
     
+  }
+
+  selectItem(key:string, title:string){
+    this.selectedItem = key
+    this.itemTitle = title
   }
 
   addItem(newName: string) {

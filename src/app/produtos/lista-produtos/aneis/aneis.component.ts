@@ -20,6 +20,9 @@ export class AneisComponent {
   public keyAnel: string
   public pAneis
 
+  public selectedItem: string
+  public itemTitle: string
+
   public itemsRef: AngularFireList<any>;
   public aneis: Observable<any[]>;
 
@@ -33,6 +36,11 @@ export class AneisComponent {
     
   }
   
+  selectItem(key:string, title:string){
+    this.selectedItem = key
+    this.itemTitle = title
+  }
+
   addItem(newName: string) {
     this.itemsRef.push({ text: newName });
   }

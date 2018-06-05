@@ -15,18 +15,27 @@ export class ProdutosService {
   
   constructor(private db: AngularFireDatabase) { }
 
-  getProdutos(): Observable<any>{
-    this.produtosRef = this.db.list('produtos');
-    return this.produtos = this.produtosRef.snapshotChanges().map(changes => {
+  getCollection(collection): Observable<any>{
+    this.produtosRef = this.db.list(`produtos/${collection}`);
+    this.produtos = this.produtosRef.snapshotChanges().map(changes => {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
     });
+    return this.produtos
+  }
+
+  getProdutos(): Observable<any>{
+    this.produtosRef = this.db.list('produtos');
+    this.produtos = this.produtosRef.snapshotChanges().map(changes => {
+      return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+    });
+    return this.produtos
   }
   saveProduto(produto) {
     this.db.list(`produtos/${produto.category}`).push(produto)
     .then(res => {})
   }
-  updateProduto(key, produto): Promise<any>{
-    return this.db.list(`produtos/${produto.category}`).set(key, produto)
+  updateProduto(category, key, produto): Promise<any>{
+    return this.db.list(`produtos/${category}`).update(key, produto)
   }
   deleteProduto(key: string) {    
     return this.db.list('produtos').remove(key)

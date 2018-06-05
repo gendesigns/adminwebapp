@@ -17,6 +17,9 @@ export class ColaresComponent {
 
   public pColares
 
+  public selectedItem: string
+  public itemTitle: string
+
   public defaultStatus = 'Ativo'
   public itemsRef: AngularFireList<any>;
   public colares: Observable<any[]>;
@@ -28,6 +31,11 @@ export class ColaresComponent {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
     });
     
+  }
+
+  selectItem(key:string, title:string){
+    this.selectedItem = key
+    this.itemTitle = title
   }
 
   addItem(newName: string) {
