@@ -21,6 +21,7 @@ export class ListaProdutosComponent implements OnInit {
 
   constructor( private produtoService: ProdutosService ) { 
     /* 
+    //Update All Products
     this.produtos = this.produtoService.getCollection('Pulseiras')
     this.produtos.subscribe(element => {
       element.forEach(elem => {

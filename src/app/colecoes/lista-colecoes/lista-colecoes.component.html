@@ -9,11 +9,16 @@
     </ol>
   </nav>
   <div class="jumbotron">
+    <div class="alert alert-success alert-dismissible fade" role="alert">
+      <h6>{{ getMsg }}</h6>
+    </div>
+
     <div class="actions">
       <!-- <button class="btn btn-success" routerLink="nova-categoria">Novo categoria</button> -->
       <button class="btn btn-primary" data-toggle="modal" data-target="#novaColecao">
         <i class="fas fa-plus-circle"></i> Nova Coleção</button>
     </div>
+    
     <table class="table table-striped">
       <thead>
         <tr>
@@ -30,10 +35,9 @@
           <td>{{ colecao.title }}</td>
           <td>{{ colecao.author }}</td>
           <td>{{ colecao.createdAt | date: 'dd/MM/yyyy - HH:mm'}}</td>
-          <td *ngIf="colecao.disabled == true;">Inativo</td>
-          <td *ngIf="colecao.disabled == false;">Ativo</td>
+          <td>{{ colecao.status }}</td>
           <td>
-            <button class="btn btn-primary" (click)="selectCollection(colecao.key, colecao.title, colecao.disabled)" data-toggle="modal" data-target="#atualizaColecao">
+            <button class="btn btn-primary" (click)="selectCollection(colecao.key, colecao.title, colecao.status)" data-toggle="modal" data-target="#atualizaColecao">
               <i class="fas fa-edit"></i> Editar</button>
             <button class="btn btn-danger" (click)="selectCollection(colecao.key)" data-toggle="modal" data-target="#delete">
                 <i class="fas fa-minus-circle"></i> Excluir</button>
@@ -70,6 +74,11 @@
 <!-- Modal Atualiza Coleção -->
 <div class="modal fade" id="atualizaColecao" tabindex="-1" role="dialog" aria-labelledby="biblioteca" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
-    <app-atualiza-colecao [keyCollection]='keyCollection' [title]='title' [disabledInput]='disabledInput'></app-atualiza-colecao>
+    <app-atualiza-colecao 
+      [keyCollection]='keyCollection' 
+      [title]='title' 
+      [status]='status'
+      (msgRetorno)='msgRetorno($event)'
+      ></app-atualiza-colecao>
   </div>
 </div>

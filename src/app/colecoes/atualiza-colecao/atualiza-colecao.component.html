@@ -2,34 +2,29 @@
   <div class="modal-header">
     
       <h5 class="modal-title" id="exampleModalLabel">Atualizar Coleção</h5>
-        
+
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <form [formGroup]="form" (ngSubmit)="updateCollection(keyCollection, title, disabledInput)">
-      <div *ngFor="let colecao of colecoes">
-        <div *ngIf="colecao.key == keyCollection">
+    <form [formGroup]="form" (ngSubmit)="updateCollection(keyCollection)">
+      
           <div class="modal-body">
-            <div class="input-group">
-                
-                <label class="form-control" for="defaultCheck1">Inativo
-                    <input class="form-control" 
-                    
-                    id="saveDisabledCheckBox" 
-                    type="checkbox" 
-                    [checked]="colecao.disabled" 
-                    (change)="onSaveDisabledChanged()"
-                    />
-                </label>
-                
+            <div class="form-group">
+              <label>Status</label>
+              <ng-select
+                formControlName="status"
+                [items]="listaStatus"
+                [(ngModel)]="status"
+                >
+              </ng-select>
             </div>
             <div class="input-group">
-              <input type="text" class="form-control" value="{{colecao.title}}" formControlName="title">
+              <input type="text" class="form-control" 
+              [(ngModel)]="title" 
+              formControlName="title">
             </div>
           </div>
-        </div>
-      </div>  
       
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

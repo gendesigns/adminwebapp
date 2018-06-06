@@ -3,6 +3,6 @@ export class Colecao {
         public title: string,
         public author: string,
         public createdAt: string,
-        public disabled: boolean
+        public status: string
     ) {}
 }

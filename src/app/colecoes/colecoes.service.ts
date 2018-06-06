@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase'
+import { Colecao } from './colecao.model';
 
 @Injectable()
 export class ColecoesService {
@@ -22,6 +23,7 @@ export class ColecoesService {
     
   }
 
+
   getCollections(): Observable<any>{
     return this.collections
   }
@@ -31,12 +33,8 @@ export class ColecoesService {
       // console.log("Coleção cadastrada com sucesso!")
     })
   }
-  updateCollection(key, colecao) {
-    // console.log(key, colecao)
-    this.collectionRef.update(key, colecao)
-    .then(()=>{
-      // console.log('Categoria atualizada:', colecao)
-    })
+  updateCollection(key, colecao): Promise<any> {
+    return this.collectionRef.set(key, colecao)
   }
   deleteCollection(key: string) {    
     this.collectionRef.remove(key)
