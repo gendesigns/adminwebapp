@@ -39,7 +39,7 @@
           <td>
             <button class="btn btn-primary" (click)="selectCollection(colecao.key, colecao.title, colecao.status)" data-toggle="modal" data-target="#atualizaColecao">
               <i class="fas fa-edit"></i> Editar</button>
-            <button class="btn btn-danger" (click)="selectCollection(colecao.key)" data-toggle="modal" data-target="#delete">
+            <button class="btn btn-danger" (click)="selectCollection(colecao.key, colecao.title)" data-toggle="modal" data-target="#delete">
                 <i class="fas fa-minus-circle"></i> Excluir</button>
           </td>
         </tr>
@@ -60,15 +60,15 @@
 
 <!-- Modal -->
 <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
-      <app-deletar-colecao [keyCollection]='keyCollection'></app-deletar-colecao>
+    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+      <app-deletar-colecao [keyCollection]='keyCollection' [title]="title"></app-deletar-colecao>
     </div>
   </div>
 
 <!-- Modal Nova Coleção -->
 <div class="modal fade" id="novaColecao" tabindex="-1" role="dialog" aria-labelledby="novaColecao" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
-    <app-nova-colecao></app-nova-colecao>
+    <app-nova-colecao (msgRetorno)='msgRetorno($event)'></app-nova-colecao>
   </div>
 </div>
 <!-- Modal Atualiza Coleção -->

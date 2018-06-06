@@ -24,20 +24,20 @@ export class ListaColecoesComponent implements OnInit {
   constructor( private colecoesSevice: ColecoesService ) {
     
     //Update All Products
-    this.colecoes = this.colecoesSevice.getCollections()
-    this.colecoes.subscribe(element => {
-      element.forEach(elem => {
-        // this.colecoesSevice.updateCollection(elem.key, 
-        // {
-        //   author: elem.author, 
-        //   createdAt: elem.createdAt,
-        //   title: elem.title,
-        //   status:'Ativo'
-        // })
-        // console.log(elem.key)    
-      });
+    // this.colecoes = this.colecoesSevice.getCollections()
+    // this.colecoes.subscribe(element => {
+    //   element.forEach(elem => {
+    //     this.colecoesSevice.updateCollection(elem.key, 
+    //     {
+    //       author: elem.author, 
+    //       createdAt: elem.createdAt,
+    //       title: elem.title,
+    //       status:'Ativo'
+    //     })
+    //     console.log(elem.key)    
+    //   });
       
-    });
+    // });
 
    }
 
@@ -53,6 +53,7 @@ export class ListaColecoesComponent implements OnInit {
   msgRetorno(event){
     this.getMsg = event.msgSuccess
     $('#atualizaColecao').modal('hide');
+    $('#novaColecao').modal('hide');
     setTimeout(() =>{ 
       $('.alert').removeClass('hide')
       $('.alert').addClass('show')

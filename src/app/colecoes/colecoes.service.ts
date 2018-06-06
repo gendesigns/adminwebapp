@@ -27,11 +27,11 @@ export class ColecoesService {
   getCollections(): Observable<any>{
     return this.collections
   }
+  // saveCollection(collection): Promise<any> {
+  //   return this.collectionRef.push(collection)
+  // }
   saveCollection(collection) {
-    this.collectionRef.push(collection)
-    .then(res => {
-      // console.log("Coleção cadastrada com sucesso!")
-    })
+    return this.collectionRef.push(collection)
   }
   updateCollection(key, colecao): Promise<any> {
     return this.collectionRef.set(key, colecao)
