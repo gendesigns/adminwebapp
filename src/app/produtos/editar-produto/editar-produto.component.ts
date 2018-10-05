@@ -56,6 +56,7 @@ export class EditarProdutoComponent implements OnInit {
   public lista_familias = [
       {title:"Folheado a Ouro Amarelo 18k"},
       {title:"Folheado a Rhodium"},
+      {title:"Folheado a Rhodium Negro"},
       {title:"Prata"},
       {title:"Aço"}
     ]
