@@ -40,24 +40,21 @@
         </div>
         <div class="form-group">
           <label>Categoria</label>
-          <select class="custom-select" formControlName="category" required>
-            <option selected></option>
-            <option value="Anéis">Anéis</option>
-            <option value="Brincos">Brincos</option>
-            <option value="Colares">Colares</option>
-            <option value="Pingentes">Pingentes</option>
-            <option value="Pulseiras">Pulseiras</option>
-          </select>
+          <ng-select
+            formControlName="category"
+            [items]="lista_categorias"
+            bindLabel="title"
+            bindValue="title">
+          </ng-select>
         </div>
         <div class="form-group">
           <label>Familia</label>
-          <select class="custom-select" formControlName="family" required>
-            <option selected></option>
-            <option value="Folheado a Ouro Amarelo 18k">Folheado a Ouro 18k</option>
-            <option value="Folheado a Rhodium">Folheado a Rhodium</option>
-            <option value="Prata">Prata</option>
-            <option value="Pingentes">Aço</option>
-          </select>
+          <ng-select
+            formControlName="family"
+            [items]="lista_familias"
+            bindLabel="title"
+            bindValue="title">
+          </ng-select>
         </div>
         <div class="form-group">
           <label>Coleção</label>
